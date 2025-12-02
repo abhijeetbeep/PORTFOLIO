@@ -312,7 +312,7 @@ mark { background: transparent !important; color: #a78bfa; font-weight: bold; }
         display: flex;
     flex-wrap: wrap;
     gap: 16px;
-    margin-top: 30px;
+    margin-top: 31px;
     justify-content: center;
 
     }
