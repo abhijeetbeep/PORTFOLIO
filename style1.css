@@ -1,0 +1,320 @@
+/* --- Variables & Reset --- */
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: rgba(22, 22, 22, 0.7); /* More transparent for layering */
+    --text-main: #ffffff;
+    --text-muted: #d1d1d1;
+    --accent-color: #5a4bda; 
+    --accent-glow: rgba(90, 75, 218, 0.4);
+    --font-main: 'Inter', sans-serif;
+
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-main); }
+body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- Header Layout --- */
+header {
+    
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Keeps images from spilling out */
+    padding: 20px;
+}
+
+/* =========================================
+   THE LAYERING SYSTEM (Z-INDEX)
+   ========================================= */
+
+/* LAYER 1: BOTTOM - Video Container */
+.video-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+}
+
+.video-layer video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* The Dark Tint (Inside Layer 1) */
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), #0a0a0a);
+    z-index: 2;
+}
+
+/* LAYER 2: MIDDLE - Banner Image */
+.banner-layer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1450px;
+    max-width: 100%; /* ADDED: Ensures it fits on smaller screens */
+    height: 300px;
+    z-index: 3; 
+    pointer-events: none;
+}
+
+.banner-layer img.Top_of {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* or 'contain' depending on your image style */
+    opacity: 0.8; /* Optional: Make it blend slightly */
+}
+
+/* LAYER 3: TOP - Navbar & Content */
+.navbar, 
+.hero-content, 
+.projects-container, 
+.scroll-indicator {
+    position: relative;
+    z-index: 10; /* Highest Priority */
+}
+
+/* =========================================
+   STYLING DETAILS
+   ========================================= */
+
+/* --- Navigation --- */
+.navbar {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 60px;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-color);
+    background: #000; /* Ensures logo isn't transparent */
+}
+
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { color: var(--text-muted); font-weight: 500; transition: color 0.3s; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+.nav-links a:hover { color: var(--accent-color); }
+
+.btn-primary {
+    border: 1px solid var(--accent-color);
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.6);
+    color: var(--accent-color) !important;
+    backdrop-filter: blur(5px);
+}
+.btn-primary:hover { background: var(--accent-color); color: white !important; }
+
+.video-layer{
+    margin-top: -100px;
+    
+}
+
+/* --- Hero Text --- */
+.hero-content {
+    margin-top: 150px;
+    text-align: center;
+    max-width: 900px;
+    margin-bottom: 50px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.9); /* Strong shadow for readability */
+}
+
+h1 { font-size: 3.2rem; line-height: 1.1; margin-bottom: 10px; font-weight: 800; }
+.highlight { 
+    background: linear-gradient(to right, hsl(42, 88%, 45%), oklab(58.408% 0.20783 0.11538));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.sub-headline { font-size: 1.5rem; margin-bottom: 25px; font-weight: 600; }
+
+.description {
+    color: #e0e0e0;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    background: rgba(0,0,0,0.5); /* Dark box behind text */
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(4px);
+    display: inline-block;
+}
+
+mark { background: transparent !important; color: #a78bfa; font-weight: bold; }
+
+/* --- Cards --- */
+.projects-container {
+    
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-bottom: 60px;
+}
+
+.card {
+    margin-top: 400px;    
+    position: relative;
+    width: 280px;
+    height: 400px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 30px;
+    padding: 20px;
+    display: flex; flex-direction: column; align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--accent-color); box-shadow: 0 10px 40px var(--accent-glow); }
+
+.card-image img { width: 100%; height: 180px; object-fit: cover; border-radius: 20px; margin-bottom: 20px; }
+.card-content { text-align: center; z-index: 2; }
+.card-content h3 { font-size: 1.5rem; margin-bottom: 10px; }
+.card-content p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+.card-footer { display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600; margin-top: auto; }
+.arrow { color: var(--accent-color); transition: transform 0.3s; }
+.card:hover .arrow { transform: translateX(5px); }
+.glow-bg { position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--accent-color); filter: blur(80px); opacity: 0.2; transition: opacity 0.3s; pointer-events: none; }
+.card:hover .glow-bg { opacity: 0.5; }
+
+/* --- Scroll --- */
+.scroll-indicator { text-align: center; color: var(--text-muted); animation: bounce 2s infinite; cursor: pointer; text-shadow: 0 2px 4px black; }
+.chevron { font-size: 2rem; color: var(--accent-color); line-height: 0.5; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+/* Mobile */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .nav-links { display: none; } 
+    .projects-container { flex-direction: column; }
+}
+
+
+/* ===== VIDEO MODAL OVERLAY ===== */
+.video-modal {
+    
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    background: rgba(0, 0, 0, 0.8);
+    display: none;              /* by default hidden */
+    align-items: center;
+    justify-content: center;
+    z-index:9999;
+}
+
+/* class add karenge JS se jab open karna ho */
+.video-modal.show {
+    display: flex;
+}
+
+/* ===== MODAL BOX ===== */
+.modal-content {
+    background: #020617;
+    padding: 20px 24px;
+    border-radius: 10px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== CLOSE BUTTON (×) ===== */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #e5e7eb;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #38bdf8;
+    transform: scale(1.1);
+}
+
+/* ===== VIDEO WRAPPER ===== */
+.video-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+/* Normal videos (750x400) & Shorts (315x560) ko responsive banate hain */
+.video-wrapper iframe {
+     display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+/* Large screens pe thoda layout theek dikhane ke liye */
+@media (min-width: 1024px) {
+    .video-wrapper iframe[width="50"] {
+        flex: 1 1 700px;
+    }
+
+    .video-wrapper iframe[width="100"] {
+        flex: 0 0 315px;
+    }
+
+    .row {
+  display: flex;
+  justify-content: center;  /* horizontal */
+  align-items: center;      /* vertical */
+}
+
+   
+}
+
+/* Mobile / small screen handle */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 16px;
+        max-width: 95vw;
+        max-height: 85vh;
+    }
+
+    .video-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video-wrapper iframe {
+        width: 100% !important;
+        /* REMOVED fixed aspect-ratio so Shorts stay vertical */
+        /* height will be controlled by the HTML attributes */
+    }
+     .short iframe[width="100%"]{
+        display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 30px;
+    justify-content: center;
+
+    }
+}
+
