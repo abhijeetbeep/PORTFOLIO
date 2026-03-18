@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // 1. Force Background Video Autoplay
     const bgVideo = document.querySelector('video');
-    if(bgVideo) {
-        bgVideo.muted = true; 
+    if (bgVideo) {
+        bgVideo.muted = true;
         bgVideo.play().catch(e => console.log("Autoplay blocked", e));
     }
 
@@ -33,50 +33,109 @@ document.addEventListener("DOMContentLoaded", () => {
 
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+            
+            if (targetId === 'home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 
     // =========================================
     // 4. MODAL LOGIC (FIXED)
     // =========================================
-    const videoModal = document.getElementById("videoModal");
-    const closeBtn = videoModal.querySelector(".close-btn");
-    const videoIframes = videoModal.querySelectorAll("iframe");
-    const triggers = document.querySelectorAll(".video-trigger"); // Selects the cards
+    const modals = document.querySelectorAll(".video-modal");
+    const closeBtns = document.querySelectorAll(".close-btn");
+    const triggers = document.querySelectorAll(".video-trigger"); 
 
-    // Store original URLs to reset them later
-    const originalSrcs = Array.from(videoIframes).map((frame) => frame.src);
-
-    function openVideoModal() {
-        videoModal.classList.add("show");
+    function openVideoModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add("show");
+        }
     }
 
-    function closeVideoModal() {
-        videoModal.classList.remove("show");
+    function closeVideoModal(modal) {
+        modal.classList.remove("show");
         // Stop videos by resetting SRC
-        videoIframes.forEach((frame, index) => {
-            frame.src = "";           
-            frame.src = originalSrcs[index]; 
+        const iframes = modal.querySelectorAll("iframe");
+        iframes.forEach((frame) => {
+            const currentSrc = frame.src;
+            frame.src = "";
+            frame.src = currentSrc;
         });
     }
 
     // Attach Click Event to Cards
     triggers.forEach(trigger => {
         trigger.addEventListener("click", (e) => {
-            e.preventDefault(); // Stop page from jumping to top
-            openVideoModal();
+            e.preventDefault(); 
+            const targetModal = trigger.getAttribute("data-target");
+            if (targetModal) {
+                openVideoModal(targetModal);
+            }
         });
     });
 
     // Close on X button
-    closeBtn.addEventListener("click", closeVideoModal);
+    closeBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+             const modal = btn.closest('.video-modal');
+             if(modal) closeVideoModal(modal);
+        });
+    });
 
     // Close on Background Click
-    videoModal.addEventListener("click", (e) => {
-        if (e.target === videoModal) {
-            closeVideoModal();
+    modals.forEach(modal => {
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeVideoModal(modal);
+            }
+        });
+    });
+    // 5. Theme Toggle Logic
+    const themeToggle = document.getElementById("theme-toggle");
+    const body = document.body;
+
+    // Check for saved user preference
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+        body.classList.add("light-theme");
+        themeToggle.textContent = "☯";
+    }
+
+    themeToggle.addEventListener("click", () => {
+        body.classList.toggle("light-theme");
+
+        if (body.classList.contains("light-theme")) {
+            themeToggle.textContent = "☯";
+            localStorage.setItem("theme", "light");
+        } else {
+            themeToggle.textContent = "☯";
+            localStorage.setItem("theme", "dark");
         }
+    });
+
+    // 6. Certificates Toggle Logic
+    const certBtns = document.querySelectorAll(".cert-btn");
+    const certCards = document.querySelectorAll(".cert-card");
+
+    certBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            certBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            const filter = btn.getAttribute("data-filter");
+
+            certCards.forEach(card => {
+                if (card.getAttribute("data-category") === filter) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
     });
 });

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Editor Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="#home" class="logo">
+        <img src="logo.jpg" alt="Logo" />
+        <div class="logo-details">
+          <span class="logo-name">Abhijeet</span>
+          <span class="logo-occupation">Editor</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#enquiry" class="btn-primary">Enquiry</a></li>
+        <li>
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+            ☯
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="banner-layer">
+      <img src="banner.png" alt="my banner" class="Top_of" />
+    </div>
+
+    <div class="video-layer">
+      <video src="background_video.mp4" autoplay loop muted playsinline></video>
+      <div class="dark-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <h1>
+        <span class="highlight">Hii.. I’m Abhijeet!</span> <br />
+        A Video Editor who turns<br>
+        raw footage into high-retention stories!
+      </h1>
+      <h2 class="sub-headline">
+        I Edit Videos That Grow Channels and Sell Products
+      </h2>
+
+      <p class="description">
+        Specializing in Documentary Style / Hormozi-Style Shorts / Corporate
+        Ads <br />
+        Proficient in <mark>Premiere Pro</mark> & <mark>After Effects</mark>
+      </p>
+    </div>
+
+    <div class="scroll-indicator">
+      <p>Scroll down</p>
+      <div class="chevron">⌄</div>
+    </div>
+  </header>
+
+  <section id="about" class="about-section">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="background4.png" alt="Abhijeet - Video Editor" />
+      </div>
+      <div class="about-content">
+        <h2>Who am I?</h2>
+        <p> Hi, I’m <strong>Abhijeet</strong> — a passionate <strong>Video Editor</strong> and a B.Tech Computer Science
+          student with a strong foundation in both creativity and technology.
+
+          I don’t just edit videos, I craft engaging visual stories that capture attention and keep audiences hooked.
+          From short-form content to cinematic edits, I focus on delivering high-retention and impactful results.
+
+          Alongside my editing skills, I also have solid technical knowledge, which helps me understand content
+          strategy, digital platforms, and audience behavior more effectively.
+
+          I believe in continuous learning and constantly improving my skills — whether it's mastering new editing
+          techniques or exploring the technical side of the digital world.
+
+          My goal is simple: <i>to create content that not only looks great but also performs and connects with
+            people.</i>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="gallery-section">
+    <div class="gallery-content">
+      <h2 class="gallery-title">View My Gallery <span class="gallery-arrow"></span></h2>
+      <p class="gallery-subheading">Explore my best work and creative edits.</p>
+      <div class="projects-container">
+        <a href="#" class="card video-trigger" data-target="videoModalShort">
+          <div class="card-image"><img src="clickme.webp" alt="" /></div>
+          <div class="card-content">
+            <h3>Short</h3>
+            <p>My best edits (Shorts)!!</p>
+            <div class="card-footer">
+              <span>Watch Now</span><span class="arrow">→</span>
+            </div>
+          </div>
+          <div class="glow-bg"></div>
+        </a>
+
+        <a href="#" class="card video-trigger" data-target="videoModalLong">
+          <div class="card-image"><img src="long.png" alt="" /></div>
+          <div class="card-content">
+            <h3>Long</h3>
+            <p>My best edits (Documentary)!!</p>
+            <div class="card-footer">
+              <span>Watch Now</span><span class="arrow">→</span>
+            </div>
+          </div>
+          <div class="glow-bg"></div>
+        </a>
+
+        <a href="#" class="card">
+          <div class="card-image"><img src="gallery.png" alt="" /></div>
+          <div class="card-content">
+            <h3>Image</h3>
+            <p>My best edits (Thumbnails)!!</p>
+            <div class="card-footer">
+              <span>View More</span><span class="arrow">→</span>
+            </div>
+          </div>
+          <div class="glow-bg"></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="skills-section">
+    <h2>My Skills</h2>
+    <p class="skills-subheading">Technical expertise blended with creativity — explore my core competencies below.</p>
+    <div class="skills-box">
+      <div class="skills-container">
+        <div class="skill-item"><img src="premierepro.png" alt="Premiere Pro" /></div>
+        <div class="skill-item"><img src="alightmotion.png" alt="Alight Motion" /></div>
+        <div class="skill-item"><img src="vinci.png" alt="DaVinci Resolve" /></div>
+        <div class="skill-item"><img src="capcut.png" alt="CapCut" /></div>
+        <div class="skill-item"><img src="photoshop.png" alt="Photoshop" /></div>
+        <div class="skill-item"><img src="js.png" alt="JavaScript" /></div>
+        <div class="skill-item"><img src="html.png" alt="HTML" /></div>
+        <div class="skill-item"><img src="css.png" alt="CSS" /></div>
+        <div class="skill-item"><img src="react.png" alt="React" /></div>
+        <div class="skill-item"><img src="java.png" alt="Java" /></div>
+        <div class="skill-item"><img src="msword.png" alt="MS Word" /></div>
+        <div class="skill-item"><img src="msexcel.png" alt="MS Excel" /></div>
+        <div class="skill-item"><img src="adobe.png" alt="Adobe" /></div>
+      </div>
+    </div>
+
+    <div class="skills-progress-container">
+      <div class="progress-cards">
+
+        <!-- Video Editing Tools -->
+        <div class="progress-card">
+          <h4>Video Editing Tools</h4>
+          <div class="progress-item">
+            <div class="progress-info"><span>Premiere Pro</span><span>90%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-info"><span>After Effects</span><span>85%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-info"><span>CapCut</span><span>88%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 88%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-info"><span>DaVinci Resolve</span><span>80%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design & Creative Tools -->
+        <div class="progress-card">
+          <h4>Design & Creative Tools</h4>
+          <div class="progress-item">
+            <div class="progress-info"><span>Photoshop</span><span>85%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-info"><span>Alight Motion</span><span>80%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web Technologies -->
+        <div class="progress-card">
+          <h4>Web Technologies</h4>
+          <div class="progress-item">
+            <div class="progress-info"><span>HTML</span><span>90%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-info"><span>CSS</span><span>85%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-info"><span>JavaScript</span><span>75%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 75%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-info"><span>React</span><span>70%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 70%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Programming -->
+        <div class="progress-card">
+          <h4>Programming</h4>
+          <div class="progress-item">
+            <div class="progress-info"><span>Java</span><span>80%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Productivity Tools -->
+        <div class="progress-card">
+          <h4>Productivity Tools</h4>
+          <div class="progress-item">
+            <div class="progress-info"><span>MS Word</span><span>85%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%;"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-info"><span>MS Excel</span><span>80%</span></div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       RESUME & TIMELINE SECTION
+       ========================= -->
+  <section id="resume" class="resume-section">
+    <div class="resume-header">
+      <h2>My Resume</h2>
+      <a href="resume.pdf" class="btn-primary download-btn" download>Download Resume <span
+          class="download-icon">&#8681;</span></a>
+    </div>
+
+    <div class="edu-proj-container">
+
+      <!-- EDUCATION COLUMN -->
+      <div class="timeline-column">
+        <h3 class="column-title">Education</h3>
+        <div class="timeline-box">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>B.Tech in Artificial Intelligence and Machine Learning</h4>
+            <p>Oriental College of Technology (RGPV University), Bhopal</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Higher Secondary (12th)</h4>
+            <p>MP Board (82%)</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>High School (10th)</h4>
+            <p>MP Board (87%)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS COLUMN -->
+      <div class="timeline-column">
+        <h3 class="column-title">Projects</h3>
+        <div class="timeline-box">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>My Best Portfolio</h4>
+            <p>A modern and interactive portfolio website showcasing video editing, design, and web development skills.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Farming Advisory</h4>
+            <p>A comprehensive advisory platform designed to help farmers optimize their agricultural practices.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Crop Yield Prediction</h4>
+            <p>A machine learning project built to predict crop yields based on relevant agricultural data sets.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================
+       CERTIFICATES SECTION
+       ========================= -->
+  <section id="certificates" class="certificates-section">
+    <div class="cert-header">
+      <h2>Certificates</h2>
+      <p>Explore my achievements — both technical & beyond.</p>
+    </div>
+
+    <!-- Toggle Buttons -->
+    <div class="cert-toggle">
+      <button class="cert-btn active" data-filter="technical">Technical</button>
+      <button class="cert-btn" data-filter="other">Other</button>
+    </div>
+
+    <!-- Certificate Cards Grid -->
+    <div class="cert-grid">
+      <!-- Technical Certificate 1 -->
+      <div class="cert-card" data-category="technical">
+        <div class="cert-img-wrapper">
+          <img src="cert1.png" alt="Technical Certificate" />
+        </div>
+        <div class="cert-info">
+          <h4>Advanced Web Development</h4>
+          <span>2024</span>
+        </div>
+      </div>
+
+      <!-- Technical Certificate 2 -->
+      <div class="cert-card" data-category="technical">
+        <div class="cert-img-wrapper">
+          <img src="cert2.png" alt="Technical Certificate" />
+        </div>
+        <div class="cert-info">
+          <h4>Python for Data Science</h4>
+          <span>2023</span>
+        </div>
+      </div>
+
+      <!-- Technical Certificate 3 -->
+      <div class="cert-card" data-category="technical">
+        <div class="cert-img-wrapper">
+          <img src="cert3.png" alt="Technical Certificate" />
+        </div>
+        <div class="cert-info">
+          <h4>Leadership & Communication</h4>
+          <span>2022</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <h2>Connect With Me -</h2>
+    <div class="contact-info">
+      <p><strong>Email:</strong> <a href="mailto:abhijeetworld2tech@gmail.com">abhijeetworld2tech@gmail.com</a></p>
+      <p><strong>Call:</strong> <a href="tel:9111800236">9111800236</a></p>
+    </div>
+    <div class="contact-socials">
+      <a class="fb" href="https://www.facebook.com/abhiztsarkar" target="_blank" aria-label="Facebook">
+        <img src="facebook.png" alt="Facebook" />
+      </a>
+      <a class="ln" href="https://www.linkedin.com/in/abhijeetbeep" target="_blank" aria-label="LinkedIn">
+        <img src="linkedin.png" alt="LinkedIn" />
+      </a>
+      <a class="gh" href="https://github.com/abhijeetbeep" target="_blank" aria-label="GitHub">
+        <img src="github.png" alt="GitHub" />
+      </a>
+      <a class="tw" href="https://x.com/abhizt_" target="_blank" aria-label="Twitter">
+        <img src="twitter.jpg" alt="Twitter" />
+      </a>
+      <a class="ig" href="https://www.instagram.com/abhizt_" target="_blank" aria-label="Instagram">
+        <img src="instagram.png" alt="Instagram" />
+      </a>
+    </div>
+  </section>
+
+  <section id="enquiry" class="enquiry-section">
+    <h2>Book an Enquiry</h2>
+    <p>Fill out the form below and I'll get back to you soon.</p>
+    <form action="https://formsubmit.co/abhijeetworld2tech@gmail.com" method="POST" class="enquiry-form">
+      <input type="hidden" name="_captcha" value="false">
+      <!-- Replace 'your@email.com' with your actual email address -->
+      <input type="hidden" name="_subject" value="New Enquiry Submission!">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="Name" required placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="Email" required placeholder="john@example.com">
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="Phone" placeholder="+91 00000 00000">
+      </div>
+      <div class="form-group">
+        <label for="role">Role</label>
+        <input type="text" id="role" name="Role" placeholder="e.g. Content Creator, Agency">
+      </div>
+      <div class="form-group full-width">
+        <label for="experience">Experience</label>
+        <select id="experience" name="Experience" required>
+          <option value="" disabled selected>Select your experience level</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+      <div class="form-group full-width">
+        <label for="message">Message</label>
+        <textarea id="message" name="Message" rows="5" required placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn full-width">Send Enquiry</button>
+    </form>
+  </section>
+
+  <div id="videoModalLong" class="video-modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="video-wrapper">
+        <div class="video-container">
+          <iframe width="750" height="400"
+            src="https://www.youtube-nocookie.com/embed/l4BNiSEgDSc?controls=0&autoplay=0&rel=0&modestbranding=1&fs=0&disablekb=1"
+            title="YouTube video player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
+          </iframe>
+          <div class="video-overlay"></div>
+        </div>
+
+        <div class="video-container">
+          <iframe width="750" height="400"
+            src="https://www.youtube-nocookie.com/embed/ZiHdJclFlbs?controls=0&autoplay=0&rel=0&modestbranding=1&fs=0&disablekb=1"
+            title="YouTube video player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
+          </iframe>
+          <div class="video-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="videoModalShort" class="video-modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div class="row">
+        <div class="box">
+          <div class="video-container">
+            <iframe width="315" height="560"
+              src="https://www.youtube.com/embed/PFQMEWAFCKo?autoplay=0&rel=0&modestbranding=1"
+              title="YouTube Shorts Player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
+            </iframe>
+            <div class="video-overlay"></div>
+          </div>
+
+          <div class="video-container" style="margin-top: 40px">
+            <iframe width="315" height="560"
+              src="https://www.youtube-nocookie.com/embed/exoEaDyAwBc?controls=0&autoplay=0&rel=0&modestbranding=1"
+              title="YouTube Shorts Player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
+            </iframe>
+            <div class="video-overlay"></div>
+          </div>
+
+          <div class="video-container">
+            <iframe width="315" height="560"
+              src="https://www.youtube-nocookie.com/embed/Ml9FfOYw6cQ?controls=0&autoplay=0&rel=0&modestbranding=1"
+              title="YouTube Shorts Player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
+            </iframe>
+            <div class="video-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-bottom">
+    <p>&copy; 2026 Abhijeet</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
