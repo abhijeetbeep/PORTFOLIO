@@ -1,0 +1,48 @@
+/* =========================
+   VIDEO OVERLAY (NO-REDIRECT)
+   ========================= */
+.video-container {
+    position: relative;
+    display: block;
+    width: fit-content;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Ensure rounded corners clip overlay */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Allow clicks to pass through to the video (for center play button) */
+    z-index: 10;
+}
+
+/* Block Top Bar (Title, Share, Watch Later) */
+.video-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    /* enough to cover title */
+    pointer-events: auto;
+    /* Capture clicks here */
+}
+
+/* Block Bottom Right (YouTube Logo) */
+.video-overlay::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 120px;
+    height: 60px;
+    /* enough to cover logo */
+    pointer-events: auto;
+    /* Capture clicks here */
+}
