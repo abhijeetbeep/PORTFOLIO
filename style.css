@@ -310,7 +310,7 @@ mark {
   position: relative;
   width: 100%;
   padding: 80px 4vw;
-  background-image: url('background5.png');
+  background-image: url('images/background5.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -406,7 +406,7 @@ body.light-theme .about-section::before {
   position: relative;
   width: 100%;
   padding: 40px 20px 80px;
-  background-image: linear-gradient(to bottom, var(--bg-color) 0%, transparent 20%), url('gallery.png');
+  background-image: linear-gradient(to bottom, var(--bg-color) 0%, transparent 20%), url('images/gallery.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1214,7 +1214,7 @@ body.light-theme .cert-info span {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('background3.png');
+  background-image: url('images/background3.png');
   background-size: cover;
   background-position: center top 20%;
   background-repeat: no-repeat;
