@@ -43,9 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // =========================================
-    // 4. MODAL LOGIC (FIXED)
-    // =========================================
     const modals = document.querySelectorAll(".video-modal");
     const closeBtns = document.querySelectorAll(".close-btn");
     const triggers = document.querySelectorAll(".video-trigger"); 
