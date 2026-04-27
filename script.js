@@ -155,4 +155,110 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    // 8. Image Gallery Lightbox Logic
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+    const lightboxDownload = document.querySelector('.lightbox-download');
+    
+    let currentImageIndex = 0;
+    let imagePaths = [];
+
+    if (galleryItems.length > 0 && lightboxModal) {
+        imagePaths = Array.from(galleryItems).map(img => img.src);
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxImage();
+            lightboxModal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        let isAnimating = false;
+
+        function updateLightboxImage() {
+            const src = imagePaths[currentImageIndex];
+            lightboxImg.src = src;
+            lightboxDownload.href = src;
+        }
+
+        function changeImageWithTransition(newIndex) {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            // Fade out
+            lightboxImg.classList.add('fade-out');
+            
+            // Wait for fade out transition (300ms)
+            setTimeout(() => {
+                currentImageIndex = newIndex;
+                const src = imagePaths[currentImageIndex];
+                
+                // When new image loads, fade it back in
+                lightboxImg.onload = () => {
+                    lightboxImg.classList.remove('fade-out');
+                    isAnimating = false;
+                    lightboxImg.onload = null; // cleanup
+                };
+                
+                lightboxImg.onerror = () => {
+                    lightboxImg.classList.remove('fade-out');
+                    isAnimating = false;
+                    lightboxImg.onerror = null;
+                };
+
+                // Set new source
+                lightboxImg.src = src;
+                lightboxDownload.href = src;
+            }, 300);
+        }
+
+        function closeLightbox() {
+            lightboxModal.classList.remove('show');
+            // Remove src after modal fade out (300ms)
+            setTimeout(() => {
+                lightboxImg.src = "";
+                lightboxImg.classList.remove('fade-out');
+            }, 300);
+            document.body.style.overflow = '';
+            isAnimating = false;
+        }
+
+        function showNextImage() {
+            changeImageWithTransition((currentImageIndex + 1) % imagePaths.length);
+        }
+
+        function showPrevImage() {
+            changeImageWithTransition((currentImageIndex - 1 + imagePaths.length) % imagePaths.length);
+        }
+
+        galleryItems.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', showNextImage);
+        lightboxPrev.addEventListener('click', showPrevImage);
+
+        // Close on background click
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxModal.classList.contains('show')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNextImage();
+            if (e.key === 'ArrowLeft') showPrevImage();
+        });
+    }
 });
