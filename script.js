@@ -56,13 +56,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function closeVideoModal(modal) {
         modal.classList.remove("show");
-        // Stop videos by resetting SRC
-        const iframes = modal.querySelectorAll("iframe");
-        iframes.forEach((frame) => {
-            const currentSrc = frame.src;
-            frame.src = "";
-            frame.src = currentSrc;
-        });
+        
+        if (modal.id === 'videoPlayerModal') {
+            const playerIframe = document.getElementById('youtubePlayerIframe');
+            if (playerIframe) playerIframe.src = "";
+        } else {
+            // Stop videos by resetting SRC
+            const iframes = modal.querySelectorAll("iframe");
+            iframes.forEach((frame) => {
+                const currentSrc = frame.src;
+                frame.src = "";
+                frame.src = currentSrc;
+            });
+        }
     }
 
     // Attach Click Event to Cards
@@ -89,6 +95,33 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.addEventListener("click", (e) => {
             if (e.target === modal) {
                 closeVideoModal(modal);
+            }
+        });
+    });
+
+    // Premium Video Cards Lazy Load Logic
+    const premiumCards = document.querySelectorAll('.premium-video-card');
+    const playerModal = document.getElementById('videoPlayerModal');
+    const playerIframe = document.getElementById('youtubePlayerIframe');
+
+    premiumCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            const videoSrc = card.getAttribute('data-video-src');
+            
+            // Close any currently open modals (e.g. videoModalLong or videoModalShort)
+            document.querySelectorAll('.video-modal.show').forEach(m => {
+                m.classList.remove('show');
+            });
+
+            // Set the iframe src
+            if (playerIframe && videoSrc) {
+                playerIframe.src = videoSrc;
+            }
+
+            // Open the player modal
+            if (playerModal) {
+                playerModal.classList.add('show');
             }
         });
     });

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Editor Portfolio</title>
+  <title>Abhijeet Sarkar</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/jpg" href="images/logo.jpg">
   <link rel="apple-touch-icon" href="logo.jpg">
@@ -112,7 +112,7 @@
           <div class="card-image"><img src="images/clickme.webp" alt="" /></div>
           <div class="card-content">
             <h3>Short</h3>
-            <p>My best edits (Shorts)!!</p>
+            <p>My best edits (Shorts)</p>
             <div class="card-footer">
               <span>Watch Now</span><span class="arrow">→</span>
             </div>
@@ -124,7 +124,7 @@
           <div class="card-image"><img src="images/long.png" alt="" /></div>
           <div class="card-content">
             <h3>Long</h3>
-            <p>My best edits (Documentary)!!</p>
+            <p>My best edits (Documentary)</p>
             <div class="card-footer">
               <span>Watch Now</span><span class="arrow">→</span>
             </div>
@@ -136,7 +136,7 @@
           <div class="card-image"><img src="images/gallery.png" alt="" /></div>
           <div class="card-content">
             <h3>Image</h3>
-            <p>My best edits (Thumbnails)!!</p>
+            <p>My best edits (Thumbnails)</p>
             <div class="card-footer">
               <span>View More</span><span class="arrow">→</span>
             </div>
@@ -470,22 +470,50 @@
   <div id="videoModalLong" class="video-modal">
     <div class="modal-content">
       <span class="close-btn">&times;</span>
-      <div class="video-wrapper">
-        <div class="video-container">
-          <iframe width="750" height="400"
-            src="https://www.youtube-nocookie.com/embed/l4BNiSEgDSc?controls=0&autoplay=0&rel=0&modestbranding=1&fs=0&disablekb=1"
-            title="YouTube video player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
-          </iframe>
-          <div class="video-overlay"></div>
+      <div class="video-wrapper premium-grid">
+
+        <div class="premium-video-card"
+          data-video-src="https://www.youtube-nocookie.com/embed/l4BNiSEgDSc?autoplay=1&rel=0&modestbranding=1">
+          <div class="card-thumbnail">
+            <img src="https://img.youtube.com/vi/l4BNiSEgDSc/hqdefault.jpg" alt="Video Thumbnail">
+            <div class="play-icon-center">▶</div>
+          </div>
+          <div class="card-info">
+            <h4>Documentary Style Edit 1</h4>
+            <div class="card-meta">
+              <span class="views">Premium Edit</span>
+              <div class="tools">
+                <img src="images/premierepro.png" alt="Premiere Pro">
+                <img src="images/adobe.png" alt="After Effects">
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <button class="gradient-play-btn">Watch Now</button>
+          </div>
         </div>
 
-        <div class="video-container">
-          <iframe width="750" height="400"
-            src="https://www.youtube-nocookie.com/embed/ZiHdJclFlbs?controls=0&autoplay=0&rel=0&modestbranding=1&fs=0&disablekb=1"
-            title="YouTube video player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
-          </iframe>
-          <div class="video-overlay"></div>
+        <div class="premium-video-card"
+          data-video-src="https://www.youtube-nocookie.com/embed/ZiHdJclFlbs?autoplay=1&rel=0&modestbranding=1">
+          <div class="card-thumbnail">
+            <img src="https://img.youtube.com/vi/ZiHdJclFlbs/hqdefault.jpg" alt="Video Thumbnail">
+            <div class="play-icon-center">▶</div>
+          </div>
+          <div class="card-info">
+            <h4>Documentary Style Edit 2</h4>
+            <div class="card-meta">
+              <span class="views">Premium Edit</span>
+              <div class="tools">
+                <img src="images/premierepro.png" alt="Premiere Pro">
+                <img src="images/adobe.png" alt="After Effects">
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <button class="gradient-play-btn">Watch Now</button>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -493,32 +521,71 @@
   <div id="videoModalShort" class="video-modal">
     <div class="modal-content">
       <span class="close-btn">&times;</span>
-      <div class="row">
-        <div class="box">
-          <div class="video-container">
-            <iframe width="315" height="560"
-              src="https://www.youtube.com/embed/PFQMEWAFCKo?autoplay=0&rel=0&modestbranding=1"
-              title="YouTube Shorts Player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
-            </iframe>
-            <div class="video-overlay"></div>
-          </div>
+      <div class="video-wrapper premium-grid">
 
-          <div class="video-container" style="margin-top: 40px">
-            <iframe width="315" height="560"
-              src="https://www.youtube-nocookie.com/embed/exoEaDyAwBc?controls=0&autoplay=0&rel=0&modestbranding=1"
-              title="YouTube Shorts Player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
-            </iframe>
-            <div class="video-overlay"></div>
+        <div class="premium-video-card"
+          data-video-src="https://www.youtube.com/embed/PFQMEWAFCKo?autoplay=1&rel=0&modestbranding=1">
+          <div class="card-thumbnail">
+            <img src="https://img.youtube.com/vi/PFQMEWAFCKo/hqdefault.jpg" alt="Shorts Thumbnail">
+            <div class="play-icon-center">▶</div>
           </div>
-
-          <div class="video-container">
-            <iframe width="315" height="560"
-              src="https://www.youtube-nocookie.com/embed/Ml9FfOYw6cQ?controls=0&autoplay=0&rel=0&modestbranding=1"
-              title="YouTube Shorts Player" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen>
-            </iframe>
-            <div class="video-overlay"></div>
+          <div class="card-info">
+            <h4>High-Retention Short 1</h4>
+            <div class="card-meta">
+              <span class="views">Viral Format</span>
+              <div class="tools">
+                <img src="images/premierepro.png" alt="Premiere Pro">
+                <img src="images/capcut.png" alt="CapCut">
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <button class="gradient-play-btn">Watch Now</button>
           </div>
         </div>
+
+        <div class="premium-video-card"
+          data-video-src="https://www.youtube-nocookie.com/embed/exoEaDyAwBc?autoplay=1&rel=0&modestbranding=1">
+          <div class="card-thumbnail">
+            <img src="https://img.youtube.com/vi/exoEaDyAwBc/hqdefault.jpg" alt="Shorts Thumbnail">
+            <div class="play-icon-center">▶</div>
+          </div>
+          <div class="card-info">
+            <h4>High-Retention Short 2</h4>
+            <div class="card-meta">
+              <span class="views">Viral Format</span>
+              <div class="tools">
+                <img src="images/premierepro.png" alt="Premiere Pro">
+                <img src="images/capcut.png" alt="CapCut">
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <button class="gradient-play-btn">Watch Now</button>
+          </div>
+        </div>
+
+        <div class="premium-video-card"
+          data-video-src="https://www.youtube-nocookie.com/embed/Ml9FfOYw6cQ?autoplay=1&rel=0&modestbranding=1">
+          <div class="card-thumbnail">
+            <img src="https://img.youtube.com/vi/Ml9FfOYw6cQ/hqdefault.jpg" alt="Shorts Thumbnail">
+            <div class="play-icon-center">▶</div>
+          </div>
+          <div class="card-info">
+            <h4>High-Retention Short 3</h4>
+            <div class="card-meta">
+              <span class="views">Viral Format</span>
+              <div class="tools">
+                <img src="images/premierepro.png" alt="Premiere Pro">
+                <img src="images/capcut.png" alt="CapCut">
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <button class="gradient-play-btn">Watch Now</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -555,6 +622,17 @@
     </div>
   </div>
 
+  <!-- Video Player Modal -->
+  <div id="videoPlayerModal" class="video-modal player-modal">
+    <div class="modal-content player-modal-content">
+      <span class="close-btn player-close-btn">&times;</span>
+      <div class="player-wrapper">
+        <iframe id="youtubePlayerIframe" width="100%" height="100%" src="" frameborder="0"
+          allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
   <!-- Lightbox Modal -->
   <div id="lightboxModal" class="lightbox-modal">
     <span class="lightbox-close">&times;</span>
@@ -562,7 +640,8 @@
     <div class="lightbox-content">
       <img class="lightbox-img" src="" alt="Full View">
       <div class="lightbox-download-container">
-        <a href="" download class="lightbox-download btn-primary">Download Image <span style="margin-left: 5px;">&#8681;</span></a>
+        <a href="" download class="lightbox-download btn-primary">Download Image <span
+            style="margin-left: 5px;">&#8681;</span></a>
       </div>
     </div>
     <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
