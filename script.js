@@ -172,11 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // 7. Mobile Hamburger Menu Toggle
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.querySelector('.nav-links');
+    const navOverlay = document.getElementById('nav-overlay');
 
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
+            if (navOverlay) navOverlay.classList.toggle('active');
         });
 
         // Close menu when a link is clicked
@@ -185,8 +187,18 @@ document.addEventListener("DOMContentLoaded", () => {
             item.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
+                if (navOverlay) navOverlay.classList.remove('active');
             });
         });
+
+        // Close menu when overlay is clicked
+        if (navOverlay) {
+            navOverlay.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+            });
+        }
     }
 
     // 8. Image Gallery Lightbox Logic
