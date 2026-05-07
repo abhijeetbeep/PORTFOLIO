@@ -281,10 +281,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         galleryItems.forEach((img, index) => {
+            // Anti-save protection
+            img.addEventListener('contextmenu', e => e.preventDefault());
+            img.setAttribute('draggable', 'false');
+
             img.addEventListener('click', () => {
                 openLightbox(index);
             });
         });
+
+        if (lightboxImg) {
+            // Anti-save protection for lightbox image
+            lightboxImg.addEventListener('contextmenu', e => e.preventDefault());
+            lightboxImg.setAttribute('draggable', 'false');
+        }
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightboxNext.addEventListener('click', showNextImage);

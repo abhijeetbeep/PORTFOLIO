@@ -1763,6 +1763,17 @@ body.light-theme .form-group textarea:focus,
   transform: scale(1.1);
 }
 
+/* Anti-save protection for gallery images */
+.gallery-item img,
+.lightbox-img {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 /* Lightbox Modal */
 .lightbox-modal {
   position: fixed;
