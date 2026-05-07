@@ -172,6 +172,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // 5.5 Skills Progress Infinite Scroll Logic
+    const progressCardsContainer = document.querySelector(".progress-cards");
+    const progressWrapper = document.querySelector(".skills-progress-container");
+    
+    // Duplicate cards for infinite scroll
+    if (progressCardsContainer) {
+        const originalProgressCards = Array.from(document.querySelectorAll(".progress-card"));
+        originalProgressCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            progressCardsContainer.appendChild(clone);
+        });
+    }
+
+    // Pause/Resume floating animation on click (mobile support)
+    if (progressWrapper && progressCardsContainer) {
+        progressWrapper.addEventListener("click", () => {
+            progressCardsContainer.classList.toggle("paused");
+        });
+    }
+
     // 6. Certificates Toggle Logic
     const certBtns = document.querySelectorAll(".cert-btn");
     const certGrid = document.querySelector(".cert-grid");

@@ -633,16 +633,16 @@ body.light-theme .gallery-section::before {
 }
 
 .btn-projects {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(90, 75, 218, 0.2);
+  border: 1px solid var(--accent-color);
   color: #fff;
+  box-shadow: 0 0 15px rgba(90, 75, 218, 0.3);
 }
 
 .btn-projects:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: var(--accent-color);
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px var(--accent-glow);
 }
 
 @media (max-width: 480px) {
@@ -653,7 +653,7 @@ body.light-theme .gallery-section::before {
     padding: 0 20px;
     margin-top: 30px;
   }
-  
+
   .hero-btn {
     width: 100%;
     text-align: center;
@@ -927,19 +927,43 @@ body.modal-open {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
 }
 
 .progress-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 25px;
+  width: max-content;
+  align-items: stretch;
+  animation: scroll-right 30s linear infinite;
+}
+
+.progress-cards.paused,
+.skills-progress-container:hover .progress-cards {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(calc(-50% - 12.5px));
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .progress-card {
+  width: 280px;
+  flex: 0 0 auto;
+  max-width: 80vw;
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 30px;
+  border-radius: 18px;
+  padding: 24px;
   backdrop-filter: blur(15px);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -953,11 +977,11 @@ body.modal-open {
 }
 
 .progress-card h4 {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: var(--accent-color);
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 15px;
+  padding-bottom: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -967,7 +991,7 @@ body.light-theme .progress-card h4 {
 }
 
 .progress-item {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .progress-item:last-child {
@@ -977,8 +1001,8 @@ body.light-theme .progress-card h4 {
 .progress-info {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
   color: var(--text-main);
   font-weight: 500;
 }
@@ -1202,8 +1226,13 @@ body.light-theme .timeline-box {
 }
 
 @keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 20px)); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-50% - 20px));
+  }
 }
 
 .cert-card {
