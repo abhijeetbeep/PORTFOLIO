@@ -62,6 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (modal.id === 'videoPlayerModal') {
             const playerIframe = document.getElementById('youtubePlayerIframe');
             if (playerIframe) playerIframe.src = "";
+            const localVideo = document.getElementById('localVideoPlayer');
+            if (localVideo) {
+                localVideo.pause();
+                localVideo.currentTime = 0;
+            }
         } else {
             // Stop videos by resetting SRC
             const iframes = modal.querySelectorAll("iframe");
@@ -105,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const premiumCards = document.querySelectorAll('.premium-video-card');
     const playerModal = document.getElementById('videoPlayerModal');
     const playerIframe = document.getElementById('youtubePlayerIframe');
+    const localVideo = document.getElementById('localVideoPlayer');
 
     premiumCards.forEach(card => {
         card.addEventListener('click', (e) => {
@@ -116,9 +122,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 closeVideoModal(m);
             });
 
-            // Set the iframe src
-            if (playerIframe && videoSrc) {
-                playerIframe.src = videoSrc;
+            // Set the iframe or local video src
+            if (videoSrc) {
+                const wrapper = playerModal.querySelector('.player-wrapper');
+                if (videoSrc.includes('youtube')) {
+                    if (wrapper) wrapper.classList.remove('short-format');
+                    if (playerIframe) {
+                        playerIframe.src = videoSrc;
+                        playerIframe.style.display = 'block';
+                    }
+                    if (localVideo) localVideo.style.display = 'none';
+                } else {
+                    if (wrapper) wrapper.classList.add('short-format');
+                    if (localVideo) {
+                        localVideo.src = videoSrc;
+                        localVideo.style.display = 'block';
+                        localVideo.play().catch(e => console.log("Play interrupted", e));
+                    }
+                    if (playerIframe) playerIframe.style.display = 'none';
+                }
             }
 
             // Open the player modal
@@ -152,6 +174,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 6. Certificates Toggle Logic
     const certBtns = document.querySelectorAll(".cert-btn");
+    const certGrid = document.querySelector(".cert-grid");
+    const certWrapper = document.querySelector(".cert-wrapper");
+    
+    // Duplicate cards for infinite scroll
+    if (certGrid) {
+        const originalCards = Array.from(document.querySelectorAll(".cert-card"));
+        originalCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            certGrid.appendChild(clone);
+        });
+    }
+
+    // Select all cards including clones
     const certCards = document.querySelectorAll(".cert-card");
 
     certBtns.forEach(btn => {
@@ -163,13 +199,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             certCards.forEach(card => {
                 if (card.getAttribute("data-category") === filter) {
-                    card.style.display = "block";
+                    card.style.display = "flex";
                 } else {
                     card.style.display = "none";
                 }
             });
         });
     });
+
+    // Pause/Resume floating animation on click
+    if (certWrapper && certGrid) {
+        certWrapper.addEventListener("click", () => {
+            certGrid.classList.toggle("paused");
+        });
+    }
 
     // 7. Mobile Hamburger Menu Toggle
     const hamburger = document.getElementById('hamburger');

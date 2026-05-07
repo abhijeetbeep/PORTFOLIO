@@ -592,21 +592,72 @@ body.light-theme .gallery-section::before {
   opacity: 0.5;
 }
 
-/* Scroll Indicator */
-.scroll-indicator {
+/* Hero Action Buttons */
+.hero-action-btns {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
   position: relative;
   z-index: 10;
-  text-align: center;
-  color: var(--text-muted);
-  animation: bounce 2s infinite;
-  cursor: pointer;
-  text-shadow: 0 2px 4px black;
+  margin-top: 20px;
+  animation: fadeIn 1.2s ease-out;
 }
 
-.chevron {
-  font-size: 2rem;
-  color: var(--accent-color);
-  line-height: 0.5;
+.hero-btn {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.btn-edits {
+  background: rgba(90, 75, 218, 0.2);
+  border: 1px solid var(--accent-color);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(90, 75, 218, 0.3);
+}
+
+.btn-edits:hover {
+  background: var(--accent-color);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px var(--accent-glow);
+}
+
+.btn-projects {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.btn-projects:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 480px) {
+  .hero-action-btns {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 30px;
+  }
+  
+  .hero-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* Animations */
@@ -1130,17 +1181,35 @@ body.light-theme .timeline-box {
   box-shadow: 0 5px 15px var(--accent-glow);
 }
 
+.cert-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
 .cert-grid {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
   gap: 40px;
+  width: max-content;
   align-items: stretch;
+  animation: scroll-left 25s linear infinite;
+}
+
+.cert-grid.paused {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 20px)); }
 }
 
 .cert-card {
-  width: 100%;
-  max-width: 360px;
+  width: 320px;
+  flex: 0 0 auto;
+  max-width: 80vw;
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
@@ -2057,12 +2126,22 @@ body.light-theme .form-group textarea:focus,
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.player-wrapper iframe {
+.player-wrapper.short-format {
+  padding-bottom: 0;
+  height: 85vh;
+  width: calc(85vh * 9 / 16);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.player-wrapper iframe,
+.player-wrapper video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: 12px;
 }
 
 .player-close-btn {
