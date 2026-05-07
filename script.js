@@ -51,11 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const modal = document.getElementById(modalId);
         if (modal) {
             modal.classList.add("show");
+            document.body.classList.add("modal-open");
         }
     }
 
     function closeVideoModal(modal) {
         modal.classList.remove("show");
+        document.body.classList.remove("modal-open");
         
         if (modal.id === 'videoPlayerModal') {
             const playerIframe = document.getElementById('youtubePlayerIframe');
@@ -111,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Close any currently open modals (e.g. videoModalLong or videoModalShort)
             document.querySelectorAll('.video-modal.show').forEach(m => {
-                m.classList.remove('show');
+                closeVideoModal(m);
             });
 
             // Set the iframe src
@@ -121,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Open the player modal
             if (playerModal) {
-                playerModal.classList.add('show');
+                openVideoModal('videoPlayerModal');
             }
         });
     });
@@ -208,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxClose = document.querySelector('.lightbox-close');
     const lightboxPrev = document.querySelector('.lightbox-prev');
     const lightboxNext = document.querySelector('.lightbox-next');
-    const lightboxDownload = document.querySelector('.lightbox-download');
     
     let currentImageIndex = 0;
     let imagePaths = [];
@@ -220,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
             currentImageIndex = index;
             updateLightboxImage();
             lightboxModal.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.classList.add('modal-open'); // Prevent background scrolling
         }
 
         let isAnimating = false;
@@ -228,7 +229,6 @@ document.addEventListener("DOMContentLoaded", () => {
         function updateLightboxImage() {
             const src = imagePaths[currentImageIndex];
             lightboxImg.src = src;
-            lightboxDownload.href = src;
         }
 
         function changeImageWithTransition(newIndex) {
@@ -258,7 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Set new source
                 lightboxImg.src = src;
-                lightboxDownload.href = src;
             }, 300);
         }
 
@@ -269,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 lightboxImg.src = "";
                 lightboxImg.classList.remove('fade-out');
             }, 300);
-            document.body.style.overflow = '';
+            document.body.classList.remove('modal-open');
             isAnimating = false;
         }
 
