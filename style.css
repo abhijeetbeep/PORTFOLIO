@@ -2174,8 +2174,40 @@ body.light-theme .form-group textarea:focus,
 }
 
 .player-close-btn {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  font-size: 35px;
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--accent-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #fff;
+  z-index: 10005;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(90, 75, 218, 0.4);
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.player-close-btn:hover {
+  background: var(--accent-color);
+  transform: scale(1.1);
+  box-shadow: 0 0 25px var(--accent-glow);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .player-close-btn {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
 }

@@ -93,7 +93,13 @@ document.addEventListener("DOMContentLoaded", () => {
     closeBtns.forEach(btn => {
         btn.addEventListener("click", () => {
              const modal = btn.closest('.video-modal');
-             if(modal) closeVideoModal(modal);
+             if(modal) {
+                 closeVideoModal(modal);
+                 if (modal.id === 'videoPlayerModal' && typeof previousModalId !== 'undefined' && previousModalId) {
+                     openVideoModal(previousModalId);
+                     previousModalId = null;
+                 }
+             }
         });
     });
 
@@ -102,6 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.addEventListener("click", (e) => {
             if (e.target === modal) {
                 closeVideoModal(modal);
+                if (modal.id === 'videoPlayerModal' && typeof previousModalId !== 'undefined' && previousModalId) {
+                    openVideoModal(previousModalId);
+                    previousModalId = null;
+                }
             }
         });
     });
@@ -112,11 +122,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const playerIframe = document.getElementById('youtubePlayerIframe');
     const localVideo = document.getElementById('localVideoPlayer');
 
+    let previousModalId = null;
+
     premiumCards.forEach(card => {
         card.addEventListener('click', (e) => {
             e.preventDefault();
             const videoSrc = card.getAttribute('data-video-src');
             
+            // Remember which modal is currently open
+            const openModal = document.querySelector('.video-modal.show');
+            if (openModal && openModal.id !== 'videoPlayerModal') {
+                previousModalId = openModal.id;
+            }
+
             // Close any currently open modals (e.g. videoModalLong or videoModalShort)
             document.querySelectorAll('.video-modal.show').forEach(m => {
                 closeVideoModal(m);
