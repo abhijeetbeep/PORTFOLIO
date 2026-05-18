@@ -211,23 +211,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. Certificates Toggle Logic
+    // 6. Certificates & Graphic Work Toggle/Scroll Logic
     const certBtns = document.querySelectorAll(".cert-btn");
-    const certGrid = document.querySelector(".cert-grid");
-    const certWrapper = document.querySelector(".cert-wrapper");
     
-    // Duplicate cards for infinite scroll
-    if (certGrid) {
-        const originalCards = Array.from(document.querySelectorAll(".cert-card"));
+    // Duplicate cards for infinite scroll (supports multiple grids)
+    const certGrids = document.querySelectorAll(".cert-grid");
+    certGrids.forEach(grid => {
+        const originalCards = Array.from(grid.querySelectorAll(".cert-card"));
         originalCards.forEach(card => {
             const clone = card.cloneNode(true);
             clone.setAttribute('aria-hidden', 'true');
-            certGrid.appendChild(clone);
+            grid.appendChild(clone);
         });
-    }
 
-    // Select all cards including clones
-    const certCards = document.querySelectorAll(".cert-card");
+        // Pause/Resume floating animation on click
+        const wrapper = grid.closest('.cert-wrapper');
+        if (wrapper) {
+            wrapper.addEventListener("click", () => {
+                grid.classList.toggle("paused");
+            });
+        }
+    });
+
+    // Select only certificates section cards for toggle (prevents hiding Graphic Work cards)
+    const certCards = document.querySelectorAll("#certificates .cert-card");
 
     certBtns.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -245,13 +252,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-
-    // Pause/Resume floating animation on click
-    if (certWrapper && certGrid) {
-        certWrapper.addEventListener("click", () => {
-            certGrid.classList.toggle("paused");
-        });
-    }
 
     // 7. Mobile Hamburger Menu Toggle
     const hamburger = document.getElementById('hamburger');
