@@ -397,4 +397,97 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.key === 'ArrowLeft') showPrevImage();
         });
     }
+
+    // 9. Ambient Particles Generator
+    const animatedSections = document.querySelectorAll('.skills-section, .resume-section, .certificates-section, .enquiry-section, .about-section');
+    
+    // Colors matching the theme: purple, blue, cyan, pink
+    const particleColors = [
+        'rgba(90, 75, 218, 0.4)',  // accent-color (purple-blue)
+        'rgba(167, 139, 250, 0.4)', // light purple
+        'rgba(56, 189, 248, 0.3)',  // cyan/light blue
+        'rgba(236, 72, 153, 0.3)'   // pink
+    ];
+
+    const tinyParticleColors = [
+        'rgba(90, 75, 218, 0.8)',  // purple
+        'rgba(56, 189, 248, 0.8)', // blue/cyan
+        'rgba(236, 72, 153, 0.8)', // pink
+        'rgba(255, 255, 255, 0.8)' // white
+    ];
+
+    animatedSections.forEach(section => {
+        // 1. Create 4 to 7 extra floating blobs per section to increase density
+        const numParticles = Math.floor(Math.random() * 4) + 4;
+        
+        for (let i = 0; i < numParticles; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('ambient-particle');
+            
+            // Random properties for natural look
+            const size = Math.random() * 150 + 150; // 150px to 300px
+            const color = particleColors[Math.floor(Math.random() * particleColors.length)];
+            const left = Math.random() * 100; // 0 to 100%
+            const top = Math.random() * 100; // 0 to 100%
+            
+            // Custom CSS variables for animation
+            const duration = Math.random() * 10 + 15; // 15s to 25s
+            const delay = Math.random() * 5; // 0 to 5s delay
+            const moveX = (Math.random() * 20 - 10) + 'vw'; // -10vw to 10vw
+            const moveY = (Math.random() * 20 - 10) + 'vh'; // -10vh to 10vh
+            const scale = Math.random() * 0.5 + 1; // 1 to 1.5 scale
+
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
+            particle.style.left = `${left}%`;
+            particle.style.top = `${top}%`;
+            
+            // Set CSS variables for keyframes
+            particle.style.setProperty('--duration', `${duration}s`);
+            particle.style.setProperty('--delay', `${delay}s`);
+            particle.style.setProperty('--move-x', moveX);
+            particle.style.setProperty('--move-y', moveY);
+            particle.style.setProperty('--scale', scale);
+            
+            section.appendChild(particle);
+        }
+
+        // 2. Create 15 to 25 tiny glowing sparks per section
+        const numTinyParticles = Math.floor(Math.random() * 11) + 15;
+        
+        for (let i = 0; i < numTinyParticles; i++) {
+            const tiny = document.createElement('div');
+            tiny.classList.add('tiny-particle');
+            
+            const size = Math.random() * 4 + 2; // 2px to 6px
+            const color = tinyParticleColors[Math.floor(Math.random() * tinyParticleColors.length)];
+            const left = Math.random() * 100; // 0 to 100%
+            const top = Math.random() * 100; // 0 to 100%
+            
+            // Faster animation than large blobs
+            const duration = Math.random() * 8 + 7; // 7s to 15s
+            const delay = Math.random() * 5; 
+            const moveX = (Math.random() * 30 - 15) + 'vw'; 
+            const moveY = (Math.random() * 30 - 15) + 'vh'; 
+            const opacity = Math.random() * 0.5 + 0.3; // 0.3 to 0.8
+
+            tiny.style.width = `${size}px`;
+            tiny.style.height = `${size}px`;
+            tiny.style.backgroundColor = color;
+            tiny.style.boxShadow = `0 0 ${size * 2}px ${size * 0.5}px ${color}`;
+            tiny.style.left = `${left}%`;
+            tiny.style.top = `${top}%`;
+            tiny.style.opacity = opacity;
+            
+            // Set CSS variables for keyframes
+            tiny.style.setProperty('--duration', `${duration}s`);
+            tiny.style.setProperty('--delay', `${delay}s`);
+            tiny.style.setProperty('--move-x', moveX);
+            tiny.style.setProperty('--move-y', moveY);
+            tiny.style.setProperty('--scale', 1); // no scale needed
+            
+            section.appendChild(tiny);
+        }
+    });
 });
