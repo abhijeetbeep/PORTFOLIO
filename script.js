@@ -417,6 +417,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     animatedSections.forEach(section => {
+        // Create container for particles to isolate them and prevent overflow
+        const container = document.createElement('div');
+        container.classList.add('particles-container');
+        section.appendChild(container);
+
         // 1. Create 4 to 7 extra floating blobs per section to increase density
         const numParticles = Math.floor(Math.random() * 4) + 4;
         
@@ -437,11 +442,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const moveY = (Math.random() * 20 - 10) + 'vh'; // -10vh to 10vh
             const scale = Math.random() * 0.5 + 1; // 1 to 1.5 scale
 
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
+            // Set properties as CSS variables for flexible responsive control
+            particle.style.setProperty('--width', `${size}px`);
+            particle.style.setProperty('--height', `${size}px`);
+            particle.style.setProperty('--left', `${left}%`);
+            particle.style.setProperty('--top', `${top}%`);
             particle.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
-            particle.style.left = `${left}%`;
-            particle.style.top = `${top}%`;
             
             // Set CSS variables for keyframes
             particle.style.setProperty('--duration', `${duration}s`);
@@ -450,7 +456,7 @@ document.addEventListener("DOMContentLoaded", () => {
             particle.style.setProperty('--move-y', moveY);
             particle.style.setProperty('--scale', scale);
             
-            section.appendChild(particle);
+            container.appendChild(particle);
         }
 
         // 2. Create 15 to 25 tiny glowing sparks per section
@@ -472,12 +478,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const moveY = (Math.random() * 30 - 15) + 'vh'; 
             const opacity = Math.random() * 0.5 + 0.3; // 0.3 to 0.8
 
-            tiny.style.width = `${size}px`;
-            tiny.style.height = `${size}px`;
+            // Set properties as CSS variables for flexible responsive control
+            tiny.style.setProperty('--width', `${size}px`);
+            tiny.style.setProperty('--height', `${size}px`);
+            tiny.style.setProperty('--left', `${left}%`);
+            tiny.style.setProperty('--top', `${top}%`);
             tiny.style.backgroundColor = color;
             tiny.style.boxShadow = `0 0 ${size * 2}px ${size * 0.5}px ${color}`;
-            tiny.style.left = `${left}%`;
-            tiny.style.top = `${top}%`;
             tiny.style.opacity = opacity;
             
             // Set CSS variables for keyframes
@@ -487,7 +494,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tiny.style.setProperty('--move-y', moveY);
             tiny.style.setProperty('--scale', 1); // no scale needed
             
-            section.appendChild(tiny);
+            container.appendChild(tiny);
         }
     });
 });
