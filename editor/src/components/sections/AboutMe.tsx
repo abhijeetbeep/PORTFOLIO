@@ -1,0 +1,108 @@
+"use client";
+
+import { motion } from "framer-motion";
+import SectionHeading from "@/components/ui/SectionHeading";
+import { SiDavinciresolve, SiFigma, SiCinema4D } from "react-icons/si";
+import { FaFilm, FaMagic, FaImage, FaSun, FaPaintBrush, FaPenNib, FaCube } from "react-icons/fa";
+
+const tools = [
+  { name: "Premiere Pro", icon: FaFilm },
+  { name: "After Effects", icon: FaMagic },
+  { name: "Photoshop", icon: FaImage },
+  { name: "Lightroom", icon: FaSun },
+  { name: "DaVinci Resolve", icon: SiDavinciresolve },
+  { name: "Illustrator", icon: FaPenNib },
+  { name: "Figma", icon: SiFigma },
+  { name: "Cinema 4D", icon: FaCube },
+];
+
+const stagger = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+export default function AboutMe() {
+  return (
+    <section id="about" className="section-padding bg-background-secondary/50">
+      <div className="max-w-7xl mx-auto">
+        <SectionHeading
+          title="About Me"
+          subtitle="The creative mind behind the lens"
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Photo placeholder */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-accent/20 via-accent-dark/10 to-purple-900/20 bg-background-secondary border border-white/10 overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-32 h-32 rounded-full bg-accent/10 animate-pulse-glow" />
+              </div>
+            </div>
+            {/* Decorative frame */}
+            <div className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border border-accent/20 -z-10" />
+          </motion.div>
+
+          {/* Text content */}
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <motion.div variants={fadeUp}>
+              <h3 className="text-3xl font-bold font-[family-name:var(--font-heading)] gradient-text mb-2">
+                Alex Carter
+              </h3>
+              <p className="text-accent-light font-medium mb-6">
+                Creative Director & Visual Storyteller
+              </p>
+            </motion.div>
+
+            <motion.p variants={fadeUp} className="text-text-secondary leading-relaxed mb-4">
+              With over 8 years of experience in video production, motion design, and graphic design,
+              I&apos;ve helped brands transform their visual identity and connect with audiences through
+              compelling creative content. From cinematic brand films to scroll-stopping social media
+              content, every project is crafted with meticulous attention to detail.
+            </motion.p>
+
+            <motion.p variants={fadeUp} className="text-text-secondary leading-relaxed mb-8">
+              My approach blends technical expertise with artistic vision — whether it&apos;s color grading
+              a documentary, designing a brand identity system, or creating motion graphics that captivate.
+              I believe every frame tells a story, and I&apos;m here to make yours unforgettable.
+            </motion.p>
+
+            {/* Tools I Use */}
+            <motion.div variants={fadeUp}>
+              <h4 className="text-white font-semibold mb-4">Tools I Use</h4>
+              <div className="grid grid-cols-4 gap-3">
+                {tools.map((tool) => (
+                  <div
+                    key={tool.name}
+                    className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-accent/30 hover:bg-white/10 transition-all duration-300 group"
+                  >
+                    <tool.icon className="text-xl text-text-secondary group-hover:text-accent-light transition-colors" />
+                    <span className="text-[10px] text-text-secondary text-center leading-tight">
+                      {tool.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
