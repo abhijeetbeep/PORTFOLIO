@@ -32,6 +32,7 @@ export async function sendEmail(data: ContactFormData): Promise<boolean> {
     project_type: data.projectType,
     budget: data.budget,
     message: data.message,
+    date: new Date().toLocaleString(),
   };
 
   await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);

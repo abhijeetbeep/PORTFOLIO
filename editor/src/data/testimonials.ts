@@ -15,7 +15,7 @@ export const testimonials: Testimonial[] = [
     company: "BrightWave Media",
     role: "Marketing Director",
     review:
-      "Alex transformed our brand videos from ordinary to extraordinary. The cinematic quality and attention to detail exceeded all expectations. Our engagement rates tripled after launching the new content.",
+      "Abhijeet transformed our brand videos from ordinary to extraordinary. The cinematic quality and attention to detail exceeded all expectations. Our engagement rates tripled after launching the new content.",
     rating: 5,
     image: "/images/testimonials/client-1.jpg",
   },
@@ -25,7 +25,7 @@ export const testimonials: Testimonial[] = [
     company: "TechVista Inc.",
     role: "CEO",
     review:
-      "Working with Alex was a game-changer for our product launch. The motion graphics and video editing were world-class. Delivered on time and the final product blew our entire team away.",
+      "Working with Abhijeet was a game-changer for our product launch. The motion graphics and video editing were world-class. Delivered on time and the final product blew our entire team away.",
     rating: 5,
     image: "/images/testimonials/client-2.jpg",
   },
@@ -35,7 +35,7 @@ export const testimonials: Testimonial[] = [
     company: "Luxe Fashion House",
     role: "Creative Director",
     review:
-      "The fashion film Alex created for our collection was pure art. Every frame was meticulously crafted with a keen eye for color grading and mood. Truly a visionary creative.",
+      "The fashion film Abhijeet created for our collection was pure art. Every frame was meticulously crafted with a keen eye for color grading and mood. Truly a visionary creative.",
     rating: 5,
     image: "/images/testimonials/client-3.jpg",
   },
@@ -45,7 +45,7 @@ export const testimonials: Testimonial[] = [
     company: "FitPro Academy",
     role: "Founder",
     review:
-      "Alex revamped our entire YouTube channel — thumbnails, intros, and video editing. The quality jumped ten levels. Subscriber growth has been incredible since the rebrand.",
+      "Abhijeet revamped our entire YouTube channel — thumbnails, intros, and video editing. The quality jumped ten levels. Subscriber growth has been incredible since the rebrand.",
     rating: 4,
     image: "/images/testimonials/client-4.jpg",
   },
@@ -55,7 +55,7 @@ export const testimonials: Testimonial[] = [
     company: "Wanderlust Travel Co.",
     role: "Content Manager",
     review:
-      "The travel documentary Alex edited for us was breathtaking. The pacing, music selection, and color grading created an immersive experience that our audience absolutely loved.",
+      "The travel documentary Abhijeet edited for us was breathtaking. The pacing, music selection, and color grading created an immersive experience that our audience absolutely loved.",
     rating: 5,
     image: "/images/testimonials/client-5.jpg",
   },

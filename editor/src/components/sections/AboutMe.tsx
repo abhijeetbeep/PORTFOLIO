@@ -63,7 +63,7 @@ export default function AboutMe() {
           >
             <motion.div variants={fadeUp}>
               <h3 className="text-3xl font-bold font-[family-name:var(--font-heading)] gradient-text mb-2">
-                Alex Carter
+                Abhijeet Sarkar
               </h3>
               <p className="text-accent-light font-medium mb-6">
                 Creative Director & Visual Storyteller

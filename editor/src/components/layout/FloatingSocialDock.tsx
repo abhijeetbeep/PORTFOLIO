@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaInstagram, FaLinkedin, FaYoutube, FaWhatsapp } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaFacebook, FaWhatsapp } from "react-icons/fa";
 
 const socials = [
-  { icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
-  { icon: FaWhatsapp, href: "https://wa.me/15551234567", label: "WhatsApp" },
+  { icon: FaInstagram, href: "https://www.instagram.com/abhizt_?igsh=N2Izem9zeWg4bmlt", label: "Instagram" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/in/abhijeetbeep?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
+  { icon: FaFacebook, href: "https://www.facebook.com/share/1BJd7JBkDf/", label: "Facebook" },
+  { icon: FaWhatsapp, href: "https://wa.me/919111800236", label: "WhatsApp" },
 ];
 
 export default function FloatingSocialDock() {

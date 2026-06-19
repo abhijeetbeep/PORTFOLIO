@@ -4,7 +4,6 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import ParticleField from "./ParticleField";
 import FloatingLights from "./FloatingLights";
-import Portrait3D from "./Portrait3D";
 
 interface HeroSceneProps {
   mouse: { x: number; y: number };
@@ -28,7 +27,6 @@ export default function HeroScene({ mouse }: HeroSceneProps) {
       <Suspense fallback={null}>
         <ParticleField />
         <FloatingLights />
-        <Portrait3D mouse={mouse} />
       </Suspense>
     </Canvas>
   );

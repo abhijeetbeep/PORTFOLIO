@@ -43,7 +43,7 @@ export default function LoadingScreen() {
             animate={{ scale: [0.5, 1.1, 1], opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            AC
+            ABHIZT
           </motion.div>
 
           <motion.p

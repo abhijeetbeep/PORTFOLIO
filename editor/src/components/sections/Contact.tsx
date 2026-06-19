@@ -5,21 +5,44 @@ import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard";
 import { sendEmail } from "@/lib/emailjs";
+import CustomSelect from "@/components/ui/CustomSelect";
 import {
   FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp,
-  FaInstagram, FaLinkedin, FaYoutube,
+  FaInstagram, FaLinkedin, FaFacebook,
 } from "react-icons/fa";
 
 const contactInfo = [
-  { icon: FaPhone, label: "+1 (555) 123-4567", href: "tel:+15551234567" },
-  { icon: FaEnvelope, label: "hello@alexcarter.com", href: "mailto:hello@alexcarter.com" },
-  { icon: FaMapMarkerAlt, label: "Los Angeles, CA", href: "#" },
+  { icon: FaPhone, label: "+91 9111800236", href: "tel:+919111800236" },
+  { icon: FaEnvelope, label: "abhiztsarkar@gmail.com", href: "mailto:abhiztsarkar@gmail.com" },
+  {
+    icon: FaMapMarkerAlt,
+    label: "Bhopal, Madhya Pradesh, India",
+    href: "https://maps.google.com/?q=Bhopal,Madhya+Pradesh,India",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  },
 ];
 
 const socialLinks = [
-  { icon: FaInstagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
+  { icon: FaInstagram, href: "https://www.instagram.com/abhizt_?igsh=N2Izem9zeWg4bmlt", label: "Instagram" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/in/abhijeetbeep?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
+  { icon: FaFacebook, href: "https://www.facebook.com/share/1BJd7JBkDf/", label: "Facebook" },
+];
+
+const projectTypeOptions = [
+  { value: "Video Editing", label: "Video Editing" },
+  { value: "Graphic Design", label: "Graphic Design" },
+  { value: "Photo Editing", label: "Photo Editing" },
+  { value: "Motion Graphics", label: "Motion Graphics" },
+  { value: "Full Package", label: "Full Package" },
+  { value: "Other", label: "Other" },
+];
+
+const budgetOptions = [
+  { value: "Under $500", label: "Under $500" },
+  { value: "$500 - $1,000", label: "$500 - $1,000" },
+  { value: "$1,000 - $5,000", label: "$1,000 - $5,000" },
+  { value: "$5,000+", label: "$5,000+" },
 ];
 
 const inputClass =
@@ -34,7 +57,7 @@ export default function Contact() {
   const [lastSent, setLastSent] = useState(0);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> | { target: { name: string; value: string } }
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -89,6 +112,8 @@ export default function Contact() {
               <a
                 key={info.label}
                 href={info.href}
+                target={"target" in info ? info.target : undefined}
+                rel={"rel" in info ? info.rel : undefined}
                 className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent-light">
@@ -100,7 +125,7 @@ export default function Contact() {
 
             {/* WhatsApp Button */}
             <a
-              href="https://wa.me/15551234567"
+              href="https://wa.me/919111800236"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 bg-green-600/10 border border-green-500/20 rounded-xl hover:bg-green-600/20 transition-all duration-300"
@@ -108,7 +133,7 @@ export default function Contact() {
               <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400">
                 <FaWhatsapp size={18} />
               </div>
-              <span className="text-green-300 text-sm font-medium">Chat on WhatsApp</span>
+              <span className="text-green-300 text-sm font-medium">WhatsApp: +91 9111800236</span>
             </a>
 
             {/* Social links */}
@@ -180,34 +205,22 @@ export default function Contact() {
                     onChange={handleChange}
                     className={inputClass}
                   />
-                  <select
+                  <CustomSelect
                     name="projectType"
                     value={form.projectType}
                     onChange={handleChange}
-                    className={inputClass}
-                  >
-                    <option value="">Project Type</option>
-                    <option value="Video Editing">Video Editing</option>
-                    <option value="Graphic Design">Graphic Design</option>
-                    <option value="Photo Editing">Photo Editing</option>
-                    <option value="Motion Graphics">Motion Graphics</option>
-                    <option value="Full Package">Full Package</option>
-                    <option value="Other">Other</option>
-                  </select>
+                    placeholder="Project Type"
+                    options={projectTypeOptions}
+                  />
                 </div>
 
-                <select
+                <CustomSelect
                   name="budget"
                   value={form.budget}
                   onChange={handleChange}
-                  className={inputClass}
-                >
-                  <option value="">Select Budget Range</option>
-                  <option value="Under $500">Under $500</option>
-                  <option value="$500 - $1,000">$500 - $1,000</option>
-                  <option value="$1,000 - $5,000">$1,000 - $5,000</option>
-                  <option value="$5,000+">$5,000+</option>
-                </select>
+                  placeholder="Select Budget Range"
+                  options={budgetOptions}
+                />
 
                 <textarea
                   name="message"
@@ -244,7 +257,7 @@ export default function Contact() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-green-400 text-sm text-center font-medium"
                   >
-                    ✓ Message sent successfully! I&apos;ll get back to you soon.
+                    ✓ Your message has been sent successfully. I will contact you soon.
                   </motion.p>
                 )}
                 {status === "error" && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaArrowUp } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaFacebook, FaWhatsapp, FaArrowUp } from "react-icons/fa";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -17,10 +17,10 @@ const serviceLinks = [
 ];
 
 const socials = [
-  { icon: FaInstagram, href: "https://instagram.com" },
-  { icon: FaLinkedin, href: "https://linkedin.com" },
-  { icon: FaYoutube, href: "https://youtube.com" },
-  { icon: FaTwitter, href: "https://twitter.com" },
+  { icon: FaInstagram, href: "https://www.instagram.com/abhizt_?igsh=N2Izem9zeWg4bmlt" },
+  { icon: FaLinkedin, href: "https://www.linkedin.com/in/abhijeetbeep?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+  { icon: FaFacebook, href: "https://www.facebook.com/share/1BJd7JBkDf/" },
+  { icon: FaWhatsapp, href: "https://wa.me/919111800236" },
 ];
 
 export default function Footer() {
@@ -37,10 +37,10 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <span className="text-2xl font-bold font-[family-name:var(--font-heading)] gradient-text-accent">
-                AC
+                ABHIZT
               </span>
               <span className="text-sm text-text-secondary tracking-[0.2em] uppercase">
-                Studio
+                STUDIO
               </span>
             </div>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -82,9 +82,17 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Get in Touch</h4>
             <ul className="space-y-2 text-sm text-text-secondary">
-              <li>hello@alexcarter.com</li>
-              <li>+1 (555) 123-4567</li>
-              <li>Los Angeles, CA</li>
+              <li>
+                <a href="mailto:abhiztsarkar@gmail.com" className="hover:text-accent transition-colors">
+                  abhiztsarkar@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+919111800236" className="hover:text-accent transition-colors">
+                  +91 9111800236
+                </a>
+              </li>
+              <li>Bhopal, Madhya Pradesh, India</li>
             </ul>
           </div>
         </div>
@@ -107,7 +115,7 @@ export default function Footer() {
           </div>
 
           <p className="text-text-secondary text-xs">
-            © {new Date().getFullYear()} Alex Carter Studio. All rights reserved.
+            © {new Date().getFullYear()} ABHIZT STUDIO. All rights reserved.
           </p>
 
           {/* Back to top */}

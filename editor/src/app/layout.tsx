@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 
 /* SEO Metadata via Next.js Metadata API */
 export const metadata: Metadata = {
-  title: "Alex Carter | Video Editor & Creative Designer",
+  title: "ABHIZT STUDIO | Video Editor & Graphic Designer",
   description:
     "Premium video editing, motion design, and graphic design services. Transforming creative visions into stunning visual experiences.",
   keywords: [
@@ -28,23 +28,29 @@ export const metadata: Metadata = {
     "video production",
     "creative services",
   ],
+  authors: [{ name: "Abhijeet Sarkar" }],
+  creator: "Abhijeet Sarkar",
   openGraph: {
-    title: "Alex Carter | Video Editor & Creative Designer",
+    title: "ABHIZT STUDIO | Video Editor & Graphic Designer",
     description:
       "Premium video editing, motion design, and graphic design services.",
     type: "website",
     locale: "en_US",
-    siteName: "Alex Carter Studio",
+    siteName: "ABHIZT STUDIO",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alex Carter | Video Editor & Creative Designer",
+    title: "ABHIZT STUDIO | Video Editor & Graphic Designer",
     description:
       "Premium video editing, motion design, and graphic design services.",
   },
   robots: {
     index: true,
     follow: true,
+  },
+  other: {
+    location: "Bhopal, MP",
+    email: "abhiztsarkar@gmail.com",
   },
 };
 
