@@ -4,9 +4,20 @@ import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard";
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
-import { photoEdits } from "@/data/portfolio";
 
-export default function PhotoEditing() {
+interface PhotoEditingProps {
+  dynamicEdits?: Array<{
+    id: string;
+    title: string;
+    description?: string;
+    before: string;
+    after: string;
+    width: number;
+    height: number;
+  }>;
+}
+
+export default function PhotoEditing({ dynamicEdits = [] }: PhotoEditingProps) {
   return (
     <section id="photo-editing" className="section-padding bg-background-secondary/50">
       <div className="max-w-7xl mx-auto">
@@ -16,7 +27,7 @@ export default function PhotoEditing() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {photoEdits.map((edit, i) => (
+          {dynamicEdits.map((edit, i) => (
             <motion.div
               key={edit.id}
               initial={{ opacity: 0, y: 20 }}
@@ -24,8 +35,15 @@ export default function PhotoEditing() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.1 }}
             >
-              <GlassCard className="p-4">
-                <BeforeAfterSlider title={edit.title} />
+              <GlassCard className="p-4 h-full flex flex-col">
+                <BeforeAfterSlider 
+                  title={edit.title} 
+                  description={edit.description}
+                  beforeImage={edit.before}
+                  afterImage={edit.after}
+                  width={edit.width}
+                  height={edit.height}
+                />
               </GlassCard>
             </motion.div>
           ))}

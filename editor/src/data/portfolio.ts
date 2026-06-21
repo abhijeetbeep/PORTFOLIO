@@ -3,13 +3,16 @@
    Placeholder content — replace with real media later
    ======================================== */
 
+
 export interface VideoItem {
-  id: number;
+  id: number | string;
   title: string;
   category: "reels" | "youtube" | "commercial" | "cinematic" | "shortform";
   thumbnail: string;
   description: string;
   client: string;
+  videoUrl?: string;
+  aspectRatio?: "portrait" | "landscape";
 }
 
 export interface CinematicShot {
@@ -25,6 +28,8 @@ export interface GraphicDesignItem {
   category: "posters" | "thumbnails" | "social-media" | "branding";
   thumbnail: string;
   description: string;
+  width: number;
+  height: number;
 }
 
 export interface PhotoEditItem {
@@ -44,24 +49,42 @@ export interface PhotographItem {
 
 /* ---------- Video Editing Portfolio ---------- */
 export const videoPortfolio: VideoItem[] = [
-  { id: 1, title: "Summer Vibes Reel", category: "reels", thumbnail: "/images/projects/video-1.jpg", description: "Dynamic summer montage with energetic transitions", client: "SunWave Co." },
-  { id: 2, title: "Tech Product Launch", category: "commercial", thumbnail: "/images/projects/video-2.jpg", description: "Sleek product reveal with 3D motion graphics", client: "NovaTech" },
-  { id: 3, title: "Travel Documentary", category: "cinematic", thumbnail: "/images/projects/video-3.jpg", description: "Cinematic travel film across Southeast Asia", client: "WanderLens" },
-  { id: 4, title: "Brand Story — Artisan Coffee", category: "youtube", thumbnail: "/images/projects/video-4.jpg", description: "Brand storytelling for artisan coffee roasters", client: "Brew & Co." },
-  { id: 5, title: "Instagram Carousel Reel", category: "reels", thumbnail: "/images/projects/video-5.jpg", description: "Trendy carousel-style reel with kinetic text", client: "FitLife" },
-  { id: 6, title: "Fashion Film — Noir", category: "cinematic", thumbnail: "/images/projects/video-6.jpg", description: "High-fashion noir with dramatic lighting", client: "Maison Élite" },
-  { id: 7, title: "60-Second Ad Spot", category: "commercial", thumbnail: "/images/projects/video-7.jpg", description: "Fast-paced commercial for fitness brand", client: "IronEdge" },
-  { id: 8, title: "YouTube Intro Package", category: "youtube", thumbnail: "/images/projects/video-8.jpg", description: "Custom animated intro and outro package", client: "GameVault" },
-  { id: 9, title: "TikTok Trend Edit", category: "shortform", thumbnail: "/images/projects/video-9.jpg", description: "Viral-ready TikTok edit with trending audio", client: "BuzzFeed" },
-  { id: 10, title: "Wedding Highlights", category: "cinematic", thumbnail: "/images/projects/video-10.jpg", description: "Emotional wedding highlights with cinematic grading", client: "Private Client" },
-  { id: 11, title: "Recipe Short", category: "shortform", thumbnail: "/images/projects/video-11.jpg", description: "Overhead recipe video with satisfying edits", client: "TastyBites" },
-  { id: 12, title: "Behind the Scenes", category: "youtube", thumbnail: "/images/projects/video-12.jpg", description: "BTS vlog with dynamic cuts and sound design", client: "Studio X" },
+  {
+    id: "comm-shorts-1",
+    title: "Restaurant Promotional Reel",
+    category: "commercial",
+    thumbnail: "/videos/thumbnail.webp",
+    description: "Cinematic restaurant advertisement featuring signature dishes, premium presentation, and engaging food storytelling designed to attract customers and enhance brand visibility.",
+    client: "Radha Raman Restaurant",
+    videoUrl: "https://youtube.com/shorts/gKkIjvCkpw4?feature=share",
+    aspectRatio: "portrait",
+  },
+  {
+    id: "yt-video-1",
+    title: "🎓 The Last Bell – College Farewell Edit",
+    category: "youtube",
+    thumbnail: "/videos/thumbnail.webp",
+    description: "Emotional and fast-paced farewell video capturing college life, friendships, and graduation moments with heartfelt emotion and cinematic storytelling.",
+    client: "OCT",
+    videoUrl: "https://youtu.be/GzlQiZm7ZRo",
+    aspectRatio: "landscape",
+  },
+  {
+    id: "yt-video-2",
+    title: "AI & ML Club Showcase",
+    category: "youtube",
+    thumbnail: "/videos/thumbnail.webp",
+    description: "Dynamic club introduction featuring event highlights, member testimonials, and a futuristic tech-driven aesthetic that captures the energy of the AI & ML Club.",
+    client: "OCT",
+    videoUrl: "https://youtu.be/l4BNiSEgDSc",
+    aspectRatio: "landscape",
+  },
 ];
 
 /* ---------- Cinematic Shots ---------- */
 export const cinematicShots: CinematicShot[] = [
   { id: 1, title: "Golden Hour Silhouette", thumbnail: "/images/cinematic/shot-1.jpg", aspectRatio: "landscape" },
-  { id: 2, title: "Urban Neon Nights", thumbnail: "/images/cinematic/shot-2.jpg", aspectRatio: "portrait" },
+  { id: 2, title: "Lost In Her Eyes", thumbnail: "/images/cinematic/shot-2.jpg", aspectRatio: "portrait" },
   { id: 3, title: "Mountain Mist", thumbnail: "/images/cinematic/shot-3.jpg", aspectRatio: "landscape" },
   { id: 4, title: "Ocean Waves", thumbnail: "/images/cinematic/shot-4.jpg", aspectRatio: "square" },
   { id: 5, title: "Desert Dunes", thumbnail: "/images/cinematic/shot-5.jpg", aspectRatio: "portrait" },
@@ -72,18 +95,15 @@ export const cinematicShots: CinematicShot[] = [
 
 /* ---------- Graphic Designs ---------- */
 export const graphicDesigns: GraphicDesignItem[] = [
-  { id: 1, title: "Music Festival Poster", category: "posters", thumbnail: "/images/designs/design-1.jpg", description: "Vibrant festival poster with neon aesthetics" },
-  { id: 2, title: "Gaming Thumbnail Pack", category: "thumbnails", thumbnail: "/images/designs/design-2.jpg", description: "Eye-catching YouTube gaming thumbnails" },
-  { id: 3, title: "Instagram Story Templates", category: "social-media", thumbnail: "/images/designs/design-3.jpg", description: "Minimal story templates for lifestyle brands" },
-  { id: 4, title: "Restaurant Brand Identity", category: "branding", thumbnail: "/images/designs/design-4.jpg", description: "Full brand identity for upscale restaurant" },
-  { id: 5, title: "Movie Poster — Sci-Fi", category: "posters", thumbnail: "/images/designs/design-5.jpg", description: "Cinematic sci-fi movie poster concept" },
-  { id: 6, title: "Podcast Thumbnail Series", category: "thumbnails", thumbnail: "/images/designs/design-6.jpg", description: "Consistent podcast cover series" },
-  { id: 7, title: "Social Media Campaign", category: "social-media", thumbnail: "/images/designs/design-7.jpg", description: "Multi-platform campaign for fashion brand" },
-  { id: 8, title: "Startup Logo & Guidelines", category: "branding", thumbnail: "/images/designs/design-8.jpg", description: "Modern logo with comprehensive brand guide" },
-  { id: 9, title: "Concert Poster — Jazz", category: "posters", thumbnail: "/images/designs/design-9.jpg", description: "Retro-inspired jazz concert poster" },
-  { id: 10, title: "Fitness Thumbnails", category: "thumbnails", thumbnail: "/images/designs/design-10.jpg", description: "High-energy fitness YouTube thumbnails" },
-  { id: 11, title: "LinkedIn Carousel", category: "social-media", thumbnail: "/images/designs/design-11.jpg", description: "Professional LinkedIn carousel design" },
-  { id: 12, title: "Coffee Shop Rebrand", category: "branding", thumbnail: "/images/designs/design-12.jpg", description: "Complete rebrand for specialty coffee shop" },
+  { id: 1, title: "Promotion Poster", category: "posters", thumbnail: "/graphic/DEMO1.png", description: "Event Poster Design using bold layouts and typography.", width: 546, height: 771 },
+  { id: 2, title: "Brand Promotion Campaign", category: "posters", thumbnail: "/graphic/DEMO2.png", description: "Promotional Poster featuring vibrant color themes.", width: 1363, height: 767 },
+  { id: 3, title: "Creative Marketing Poster", category: "posters", thumbnail: "/graphic/DEMO3.png", description: "Creative Poster Design with custom graphical assets.", width: 961, height: 542 },
+  { id: 4, title: "Elegant Invitation Card Design", category: "posters", thumbnail: "/graphic/DEMO5.png", description: "Marketing Poster optimized for communication and branding.", width: 1120, height: 641 },
+  { id: 5, title: "YouTube Thumbnail Design", category: "thumbnails", thumbnail: "/graphic/DEMO4.png", description: "YouTube Thumbnail Design focusing on high click-through rate (CTR).", width: 1672, height: 941 },
+  { id: 6, title: "Social Media Campaign Design", category: "social-media", thumbnail: "/graphic/DEMO6.png", description: "Cohesive social media marketing campaign designed for multi-platform engagement.", width: 2938, height: 2463 },
+  { id: 7, title: "Brand Identity Design", category: "branding", thumbnail: "/graphic/DEMO7.png", description: "Professional branding and visual identity design crafted to create a strong and memorable brand presence.", width: 4950, height: 1238 },
+  { id: 8, title: "Grand Inauguration Ceremony Poster", category: "posters", thumbnail: "/graphic/DEMO8.png", description: "Professionally designed promotional poster featuring modern layout, strong visual hierarchy, and engaging branding elements.", width: 1422, height: 705 },
+  { id: 9, title: "Cricket Championship Tournament Poster", category: "posters", thumbnail: "/graphic/DEMO9.png", description: "Modern promotional poster design created with strong visual hierarchy, engaging typography, and impactful branding elements.", width: 1920, height: 1080 },
 ];
 
 /* ---------- Photo Edits (Before/After) ---------- */

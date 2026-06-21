@@ -1,22 +1,35 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
+import Image from "next/image";
 
 interface BeforeAfterSliderProps {
   title: string;
+  description?: string;
+  beforeImage?: string;
+  afterImage?: string;
   beforeLabel?: string;
   afterLabel?: string;
+  width?: number;
+  height?: number;
 }
 
 /** Interactive before/after comparison slider */
 export default function BeforeAfterSlider({
   title,
+  description,
+  beforeImage,
+  afterImage,
   beforeLabel = "Before",
   afterLabel = "After",
+  width,
+  height,
 }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+
+  const aspect = width && height ? width / height : 16 / 9;
 
   const updatePosition = useCallback(
     (clientX: number) => {
@@ -40,10 +53,11 @@ export default function BeforeAfterSlider({
   };
 
   return (
-    <div className="space-y-3">
+    <div className="flex flex-col h-full justify-between space-y-3">
       <div
         ref={containerRef}
-        className="relative aspect-video rounded-xl overflow-hidden select-none border border-white/10"
+        className="relative rounded-xl overflow-hidden select-none border border-white/10 w-full flex-shrink-0"
+        style={{ aspectRatio: aspect }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
@@ -53,25 +67,75 @@ export default function BeforeAfterSlider({
         onTouchEnd={() => setIsDragging(false)}
       >
         {/* After (full background) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent-dark/15 to-purple-900/20 bg-background-secondary" />
+        <div className="absolute inset-0 bg-[#0f172a] overflow-hidden">
+          {afterImage ? (
+            <>
+              {/* Blurred backdrop copy for aspect-ratio mismatch letterbox/pillarbox */}
+              <Image
+                src={afterImage}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover pointer-events-none blur-xl opacity-40 scale-110"
+                priority={false}
+              />
+              {/* Contained foreground image */}
+              <Image
+                src={afterImage}
+                alt={afterLabel}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain object-center pointer-events-none relative z-10"
+                loading="lazy"
+              />
+            </>
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent-dark/15 to-purple-900/20 bg-background-secondary" />
+          )}
+        </div>
 
         {/* Before (clipped) */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-slate-700/40 via-gray-800/30 to-zinc-900/40 bg-background-tertiary"
+          className="absolute inset-0 z-10 overflow-hidden bg-[#0f172a]"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-        />
+        >
+          {beforeImage ? (
+            <>
+              {/* Blurred backdrop copy for aspect-ratio mismatch letterbox/pillarbox */}
+              <Image
+                src={beforeImage}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover pointer-events-none blur-xl opacity-40 scale-110"
+                priority={false}
+              />
+              {/* Contained foreground image */}
+              <Image
+                src={beforeImage}
+                alt={beforeLabel}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain object-center pointer-events-none relative z-10"
+                loading="lazy"
+              />
+            </>
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-700/40 via-gray-800/30 to-zinc-900/40 bg-background-tertiary" />
+          )}
+        </div>
 
         {/* Labels */}
-        <span className="absolute top-3 left-3 px-2 py-1 rounded text-xs font-medium bg-black/50 text-white/80">
+        <span className="absolute top-3 left-3 px-2 py-1 rounded text-xs font-medium bg-black/50 text-white/80 z-20">
           {beforeLabel}
         </span>
-        <span className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-medium bg-black/50 text-white/80">
+        <span className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-medium bg-black/50 text-white/80 z-20">
           {afterLabel}
         </span>
 
         {/* Divider line */}
         <div
-          className="absolute top-0 bottom-0 w-0.5 bg-white/80 z-10"
+          className="absolute top-0 bottom-0 w-0.5 bg-white/80 z-20"
           style={{ left: `${position}%` }}
         >
           {/* Handle */}
@@ -84,7 +148,14 @@ export default function BeforeAfterSlider({
         </div>
       </div>
 
-      <p className="text-white font-medium text-sm">{title}</p>
+      <div className="flex-grow flex flex-col justify-between">
+        <div>
+          <p className="text-white font-medium text-sm line-clamp-1">{title}</p>
+          {description && (
+            <p className="text-text-secondary text-xs leading-relaxed mt-1 line-clamp-2 min-h-[40px]">{description}</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

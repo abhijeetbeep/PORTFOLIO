@@ -2,19 +2,21 @@
 
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { SiDavinciresolve, SiFigma, SiCinema4D } from "react-icons/si";
-import { FaFilm, FaMagic, FaImage, FaSun, FaPaintBrush, FaPenNib, FaCube } from "react-icons/fa";
+import { personalData } from "@/data/personal";
+import * as FaIcons from "react-icons/fa";
+import * as SiIcons from "react-icons/si";
 
-const tools = [
-  { name: "Premiere Pro", icon: FaFilm },
-  { name: "After Effects", icon: FaMagic },
-  { name: "Photoshop", icon: FaImage },
-  { name: "Lightroom", icon: FaSun },
-  { name: "DaVinci Resolve", icon: SiDavinciresolve },
-  { name: "Illustrator", icon: FaPenNib },
-  { name: "Figma", icon: SiFigma },
-  { name: "Cinema 4D", icon: FaCube },
-];
+const getIcon = (iconName: string) => {
+  if (iconName.startsWith("Fa")) {
+    const Icon = (FaIcons as any)[iconName];
+    if (Icon) return Icon;
+  }
+  if (iconName.startsWith("Si")) {
+    const Icon = (SiIcons as any)[iconName];
+    if (Icon) return Icon;
+  }
+  return FaIcons.FaQuestion; // fallback
+};
 
 const stagger = {
   hidden: { opacity: 0 },
@@ -63,41 +65,43 @@ export default function AboutMe() {
           >
             <motion.div variants={fadeUp}>
               <h3 className="text-3xl font-bold font-[family-name:var(--font-heading)] gradient-text mb-2">
-                Abhijeet Sarkar
+                {personalData.name}
               </h3>
               <p className="text-accent-light font-medium mb-6">
-                Creative Director & Visual Storyteller
+                {personalData.about.title}
               </p>
             </motion.div>
 
-            <motion.p variants={fadeUp} className="text-text-secondary leading-relaxed mb-4">
-              With over 8 years of experience in video production, motion design, and graphic design,
-              I&apos;ve helped brands transform their visual identity and connect with audiences through
-              compelling creative content. From cinematic brand films to scroll-stopping social media
-              content, every project is crafted with meticulous attention to detail.
-            </motion.p>
-
-            <motion.p variants={fadeUp} className="text-text-secondary leading-relaxed mb-8">
-              My approach blends technical expertise with artistic vision — whether it&apos;s color grading
-              a documentary, designing a brand identity system, or creating motion graphics that captivate.
-              I believe every frame tells a story, and I&apos;m here to make yours unforgettable.
-            </motion.p>
+            {personalData.about.paragraphs.map((paragraph, idx) => (
+              <motion.p
+                key={idx}
+                variants={fadeUp}
+                className={`text-text-secondary leading-relaxed ${
+                  idx === personalData.about.paragraphs.length - 1 ? "mb-8" : "mb-4"
+                }`}
+              >
+                {paragraph}
+              </motion.p>
+            ))}
 
             {/* Tools I Use */}
             <motion.div variants={fadeUp}>
               <h4 className="text-white font-semibold mb-4">Tools I Use</h4>
               <div className="grid grid-cols-4 gap-3">
-                {tools.map((tool) => (
-                  <div
-                    key={tool.name}
-                    className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-accent/30 hover:bg-white/10 transition-all duration-300 group"
-                  >
-                    <tool.icon className="text-xl text-text-secondary group-hover:text-accent-light transition-colors" />
-                    <span className="text-[10px] text-text-secondary text-center leading-tight">
-                      {tool.name}
-                    </span>
-                  </div>
-                ))}
+                {personalData.about.tools.map((tool) => {
+                  const IconComponent = getIcon(tool.icon);
+                  return (
+                    <div
+                      key={tool.name}
+                      className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/5 border border-white/5 hover:border-accent/30 hover:bg-white/10 transition-all duration-300 group"
+                    >
+                      <IconComponent className="text-xl text-text-secondary group-hover:text-accent-light transition-colors" />
+                      <span className="text-[10px] text-text-secondary text-center leading-tight">
+                        {tool.name}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
           </motion.div>

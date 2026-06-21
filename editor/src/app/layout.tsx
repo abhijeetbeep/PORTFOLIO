@@ -15,11 +15,12 @@ const spaceGrotesk = Space_Grotesk({
   variable: "--font-heading",
 });
 
+import { personalData } from "@/data/personal";
+
 /* SEO Metadata via Next.js Metadata API */
 export const metadata: Metadata = {
-  title: "ABHIZT STUDIO | Video Editor & Graphic Designer",
-  description:
-    "Premium video editing, motion design, and graphic design services. Transforming creative visions into stunning visual experiences.",
+  title: `${personalData.logoText} | Video Editor & Graphic Designer`,
+  description: personalData.heroDescription,
   keywords: [
     "video editor",
     "motion designer",
@@ -28,29 +29,27 @@ export const metadata: Metadata = {
     "video production",
     "creative services",
   ],
-  authors: [{ name: "Abhijeet Sarkar" }],
-  creator: "Abhijeet Sarkar",
+  authors: [{ name: personalData.name }],
+  creator: personalData.name,
   openGraph: {
-    title: "ABHIZT STUDIO | Video Editor & Graphic Designer",
-    description:
-      "Premium video editing, motion design, and graphic design services.",
+    title: `${personalData.logoText} | Video Editor & Graphic Designer`,
+    description: personalData.heroDescription,
     type: "website",
     locale: "en_US",
-    siteName: "ABHIZT STUDIO",
+    siteName: personalData.logoText,
   },
   twitter: {
     card: "summary_large_image",
-    title: "ABHIZT STUDIO | Video Editor & Graphic Designer",
-    description:
-      "Premium video editing, motion design, and graphic design services.",
+    title: `${personalData.logoText} | Video Editor & Graphic Designer`,
+    description: personalData.heroDescription,
   },
   robots: {
     index: true,
     follow: true,
   },
   other: {
-    location: "Bhopal, MP",
-    email: "abhiztsarkar@gmail.com",
+    location: personalData.contact.location,
+    email: personalData.contact.email,
   },
 };
 

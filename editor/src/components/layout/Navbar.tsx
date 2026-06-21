@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { personalData } from "@/data/personal";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -59,8 +60,8 @@ export default function Navbar() {
             className="flex items-center gap-2 group cursor-pointer"
           >
             <span className="text-lg md:text-xl font-bold font-[family-name:var(--font-heading)] tracking-[0.15em] uppercase flex items-center">
-              <span className="blue-gradient-text blue-text-glow mr-1.5">ABHIZT</span>
-              <span className="text-white tracking-[0.1em]">STUDIO</span>
+              <span className="blue-gradient-text blue-text-glow mr-1.5">{personalData.logoText.split(" ")[0]}</span>
+              <span className="text-white tracking-[0.1em]">{personalData.logoText.split(" ").slice(1).join(" ")}</span>
             </span>
           </button>
 

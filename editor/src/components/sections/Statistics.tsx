@@ -3,14 +3,13 @@
 import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import { FaFilm, FaUsers, FaCalendarAlt, FaPlay } from "react-icons/fa";
+import { personalData } from "@/data/personal";
+import * as FaIcons from "react-icons/fa";
 
-const stats = [
-  { target: 500, suffix: "+", label: "Projects Completed", icon: <FaFilm size={24} /> },
-  { target: 200, suffix: "+", label: "Happy Clients", icon: <FaUsers size={24} /> },
-  { target: 8, suffix: "+", label: "Years of Experience", icon: <FaCalendarAlt size={24} /> },
-  { target: 1000, suffix: "+", label: "Videos Delivered", icon: <FaPlay size={24} /> },
-];
+const getIcon = (iconName: string) => {
+  const Icon = (FaIcons as any)[iconName];
+  return Icon ? <Icon size={24} /> : null;
+};
 
 export default function Statistics() {
   return (
@@ -26,7 +25,7 @@ export default function Statistics() {
             show: { opacity: 1, transition: { staggerChildren: 0.15 } },
           }}
         >
-          {stats.map((stat) => (
+          {personalData.stats.map((stat) => (
             <motion.div
               key={stat.label}
               variants={{
@@ -39,7 +38,7 @@ export default function Statistics() {
                   target={stat.target}
                   suffix={stat.suffix}
                   label={stat.label}
-                  icon={stat.icon}
+                  icon={getIcon(stat.icon)}
                 />
               </GlassCard>
             </motion.div>

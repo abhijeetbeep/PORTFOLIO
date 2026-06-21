@@ -6,28 +6,13 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard";
 import { sendEmail } from "@/lib/emailjs";
 import CustomSelect from "@/components/ui/CustomSelect";
-import {
-  FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp,
-  FaInstagram, FaLinkedin, FaFacebook,
-} from "react-icons/fa";
+import { personalData } from "@/data/personal";
+import * as FaIcons from "react-icons/fa";
 
-const contactInfo = [
-  { icon: FaPhone, label: "+91 9111800236", href: "tel:+919111800236" },
-  { icon: FaEnvelope, label: "abhiztsarkar@gmail.com", href: "mailto:abhiztsarkar@gmail.com" },
-  {
-    icon: FaMapMarkerAlt,
-    label: "Bhopal, Madhya Pradesh, India",
-    href: "https://maps.google.com/?q=Bhopal,Madhya+Pradesh,India",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  },
-];
-
-const socialLinks = [
-  { icon: FaInstagram, href: "https://www.instagram.com/abhizt_?igsh=N2Izem9zeWg4bmlt", label: "Instagram" },
-  { icon: FaLinkedin, href: "https://www.linkedin.com/in/abhijeetbeep?utm_source=share_via&utm_content=profile&utm_medium=member_android", label: "LinkedIn" },
-  { icon: FaFacebook, href: "https://www.facebook.com/share/1BJd7JBkDf/", label: "Facebook" },
-];
+const getIcon = (iconName: string) => {
+  const Icon = (FaIcons as any)[iconName];
+  return Icon ? Icon : FaIcons.FaQuestion;
+};
 
 const projectTypeOptions = [
   { value: "Video Editing", label: "Video Editing" },
@@ -108,48 +93,56 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            {contactInfo.map((info) => (
-              <a
-                key={info.label}
-                href={info.href}
-                target={"target" in info ? info.target : undefined}
-                rel={"rel" in info ? info.rel : undefined}
-                className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-              >
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent-light">
-                  <info.icon size={16} />
-                </div>
-                <span className="text-text-secondary text-sm">{info.label}</span>
-              </a>
-            ))}
+            {personalData.contact.infoList.map((info) => {
+              const IconComponent = getIcon(info.icon);
+              return (
+                <a
+                  key={info.label}
+                  href={info.href}
+                  target={"target" in info ? info.target : undefined}
+                  rel={"rel" in info ? info.rel : undefined}
+                  className="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent-light">
+                    <IconComponent size={16} />
+                  </div>
+                  <span className="text-text-secondary text-sm">{info.label}</span>
+                </a>
+              );
+            })}
 
             {/* WhatsApp Button */}
             <a
-              href="https://wa.me/919111800236"
+              href={personalData.contact.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 bg-green-600/10 border border-green-500/20 rounded-xl hover:bg-green-600/20 transition-all duration-300"
             >
               <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400">
-                <FaWhatsapp size={18} />
+                <FaIcons.FaWhatsapp size={18} />
               </div>
-              <span className="text-green-300 text-sm font-medium">WhatsApp: +91 9111800236</span>
+              <span className="text-green-300 text-sm font-medium">WhatsApp: {personalData.contact.phone}</span>
             </a>
 
             {/* Social links */}
             <div className="flex gap-3 pt-2">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-text-secondary hover:text-white hover:bg-accent/20 hover:border-accent/30 transition-all duration-300"
-                  aria-label={social.label}
-                >
-                  <social.icon size={16} />
-                </a>
-              ))}
+              {personalData.contact.socialLinks
+                .filter((social) => social.icon !== "FaWhatsapp")
+                .map((social) => {
+                  const IconComponent = getIcon(social.icon);
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-text-secondary hover:text-white hover:bg-accent/20 hover:border-accent/30 transition-all duration-300"
+                      aria-label={social.label}
+                    >
+                      <IconComponent size={16} />
+                    </a>
+                  );
+                })}
             </div>
           </motion.div>
 

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { HiChevronDown } from "react-icons/hi";
+import { personalData } from "@/data/personal";
 
 /* Dynamic import — prevents SSR issues with Three.js */
 const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
@@ -85,7 +86,7 @@ export default function HeroSection() {
               variants={item}
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-[family-name:var(--font-heading)] leading-[0.95] mb-4"
             >
-              <span className="gradient-text">Abhijeet Sarkar</span>
+              <span className="gradient-text">{personalData.name}</span>
             </motion.h1>
 
             {/* Title */}
@@ -93,9 +94,11 @@ export default function HeroSection() {
               variants={item}
               className="text-lg sm:text-xl text-text-secondary font-medium mb-6"
             >
-              Video Editor{" "}
-              <span className="text-accent">|</span> Motion Designer{" "}
-              <span className="text-accent">|</span> Graphic Designer
+              {personalData.roles.map((role, idx) => (
+                <span key={role}>
+                  {role} {idx < personalData.roles.length - 1 && <span className="text-accent">| </span>}
+                </span>
+              ))}
             </motion.p>
 
             {/* Intro */}
@@ -103,22 +106,20 @@ export default function HeroSection() {
               variants={item}
               className="text-text-secondary leading-relaxed mb-8 max-w-lg"
             >
-              Transforming raw footage into cinematic masterpieces and creative
-              visions into stunning visual experiences. Let&apos;s bring your story to
-              life.
+              {personalData.heroDescription}
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div variants={item} className="flex flex-wrap gap-4">
               <button
                 onClick={() => scrollTo("#video-editing")}
-                className="px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-accent-dark via-accent to-accent-light hover:shadow-lg hover:shadow-accent/30 hover:scale-105 transition-all duration-300"
+                className="px-8 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-accent-dark via-accent to-accent-light hover:shadow-lg hover:shadow-accent/30 hover:scale-105 transition-all duration-300 cursor-pointer"
               >
                 View Portfolio
               </button>
               <button
                 onClick={() => scrollTo("#contact")}
-                className="px-8 py-3.5 rounded-xl font-semibold glass glass-hover text-white"
+                className="px-8 py-3.5 rounded-xl font-semibold glass glass-hover text-white cursor-pointer"
               >
                 Hire Me
               </button>
@@ -159,8 +160,8 @@ export default function HeroSection() {
               <div className="relative w-full h-full rounded-full overflow-hidden border border-white/10 backdrop-blur-md p-3 bg-white/5 shadow-[0_0_30px_rgba(59,130,246,0.25)] group-hover:shadow-[0_0_50px_rgba(59,130,246,0.45)] group-hover:scale-105 transition-all duration-500 flex items-center justify-center">
                 <div className="relative w-full h-full rounded-full overflow-hidden">
                   <Image
-                    src="/profile.jpg"
-                    alt="Abhijeet Sarkar"
+                    src={personalData.profileImage}
+                    alt={personalData.name}
                     fill
                     priority
                     sizes="(max-width: 768px) 240px, (max-width: 1024px) 320px, 384px"

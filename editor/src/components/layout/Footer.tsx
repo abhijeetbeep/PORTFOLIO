@@ -1,6 +1,8 @@
 "use client";
 
-import { FaInstagram, FaLinkedin, FaFacebook, FaWhatsapp, FaArrowUp } from "react-icons/fa";
+import { personalData } from "@/data/personal";
+import * as FaIcons from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -16,12 +18,10 @@ const serviceLinks = [
   "Photo Retouching",
 ];
 
-const socials = [
-  { icon: FaInstagram, href: "https://www.instagram.com/abhizt_?igsh=N2Izem9zeWg4bmlt" },
-  { icon: FaLinkedin, href: "https://www.linkedin.com/in/abhijeetbeep?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
-  { icon: FaFacebook, href: "https://www.facebook.com/share/1BJd7JBkDf/" },
-  { icon: FaWhatsapp, href: "https://wa.me/919111800236" },
-];
+const getIcon = (iconName: string) => {
+  const Icon = (FaIcons as any)[iconName];
+  return Icon ? Icon : FaIcons.FaQuestion;
+};
 
 export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -37,15 +37,14 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <span className="text-2xl font-bold font-[family-name:var(--font-heading)] gradient-text-accent">
-                ABHIZT
+                {personalData.logoText.split(" ")[0]}
               </span>
               <span className="text-sm text-text-secondary tracking-[0.2em] uppercase">
-                STUDIO
+                {personalData.logoText.split(" ").slice(1).join(" ")}
               </span>
             </div>
             <p className="text-text-secondary text-sm leading-relaxed">
-              Crafting cinematic visual experiences that elevate brands and
-              captivate audiences worldwide.
+              {personalData.footerDescription}
             </p>
           </div>
 
@@ -83,16 +82,16 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Get in Touch</h4>
             <ul className="space-y-2 text-sm text-text-secondary">
               <li>
-                <a href="mailto:abhiztsarkar@gmail.com" className="hover:text-accent transition-colors">
-                  abhiztsarkar@gmail.com
+                <a href={`mailto:${personalData.contact.email}`} className="hover:text-accent transition-colors">
+                  {personalData.contact.email}
                 </a>
               </li>
               <li>
-                <a href="tel:+919111800236" className="hover:text-accent transition-colors">
-                  +91 9111800236
+                <a href={`tel:${personalData.contact.phone}`} className="hover:text-accent transition-colors">
+                  {personalData.contact.phone}
                 </a>
               </li>
-              <li>Bhopal, Madhya Pradesh, India</li>
+              <li>{personalData.contact.location}</li>
             </ul>
           </div>
         </div>
@@ -101,21 +100,24 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Social icons */}
           <div className="flex gap-4">
-            {socials.map((social) => (
-              <a
-                key={social.href}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-text-secondary hover:text-white hover:bg-accent/20 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
-              >
-                <social.icon size={14} />
-              </a>
-            ))}
+            {personalData.contact.socialLinks.map((social) => {
+              const IconComponent = getIcon(social.icon);
+              return (
+                <a
+                  key={social.href}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center text-text-secondary hover:text-white hover:bg-accent/20 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
+                >
+                  <IconComponent size={14} />
+                </a>
+              );
+            })}
           </div>
 
           <p className="text-text-secondary text-xs">
-            © {new Date().getFullYear()} ABHIZT STUDIO. All rights reserved.
+            © {new Date().getFullYear()} {personalData.logoText}. All rights reserved.
           </p>
 
           {/* Back to top */}
