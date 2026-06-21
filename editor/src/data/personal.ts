@@ -81,10 +81,10 @@ export const personalData = {
   },
 
   stats: [
-    { target: 500, suffix: "+", label: "Projects Completed", icon: "FaFilm" },
-    { target: 200, suffix: "+", label: "Happy Clients", icon: "FaUsers" },
-    { target: 8, suffix: "+", label: "Years of Experience", icon: "FaCalendarAlt" },
-    { target: 1000, suffix: "+", label: "Videos Delivered", icon: "FaPlay" }
+    { target: 300, suffix: "+", label: "Projects Completed", icon: "FaFilm" },
+    { target: 100, suffix: "+", label: "Happy Clients", icon: "FaUsers" },
+    { target: 5, suffix: "+", label: "Years of Experience", icon: "FaCalendarAlt" },
+    { target: 50, suffix: "+", label: "Videos Delivered", icon: "FaPlay" }
   ] as StatItem[],
 
   pricing: [
