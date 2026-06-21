@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 /* Google Fonts with CSS variable integration for Tailwind v4 */
 const inter = Inter({
@@ -65,6 +66,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-text-primary">
         {children}
+        <Analytics />
       </body>
     </html>
   );
