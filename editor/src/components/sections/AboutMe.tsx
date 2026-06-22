@@ -50,7 +50,7 @@ export default function AboutMe() {
             <div
               className="hidden lg:block w-full aspect-[3/4] rounded-2xl border border-white/10 overflow-hidden relative shadow-2xl"
               style={{
-                backgroundImage: "url('/aboutbg.png')",
+                backgroundImage: "url('/aboutbg.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -81,7 +81,7 @@ export default function AboutMe() {
                   className="relative w-[280px] h-[280px] rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm shadow-[0_0_40px_rgba(59,130,246,0.6)]"
                 >
                   <img
-                    src="/about.jpg"
+                    src="/about.webp"
                     alt="Abhijeet Profile"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />

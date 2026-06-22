@@ -33,7 +33,7 @@ export interface PricingFeature {
 export const personalData = {
   name: "Abhijeet Sarkar",
   logoText: "ABHIZT STUDIO",
-  profileImage: "/profile.jpg",
+  profileImage: "/profile.webp",
   roles: ["Video Editor", "Motion Designer", "Graphic Designer"],
   heroDescription: "Transforming raw footage into cinematic masterpieces and creative visions into stunning visual experiences. Let's bring your story to life.",
   footerDescription: "Crafting cinematic visual experiences that elevate brands and captivate audiences worldwide.",
