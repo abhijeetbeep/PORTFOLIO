@@ -83,14 +83,10 @@ export const videoPortfolio: VideoItem[] = [
 
 /* ---------- Cinematic Shots ---------- */
 export const cinematicShots: CinematicShot[] = [
-  { id: 1, title: "Golden Hour Silhouette", thumbnail: "/images/cinematic/shot-1.webp", aspectRatio: "landscape" },
-  { id: 2, title: "Lost In Her Eyes", thumbnail: "/images/cinematic/shot-2.webp", aspectRatio: "portrait" },
-  { id: 3, title: "Mountain Mist", thumbnail: "/images/cinematic/shot-3.webp", aspectRatio: "landscape" },
-  { id: 4, title: "Ocean Waves", thumbnail: "/images/cinematic/shot-4.webp", aspectRatio: "square" },
-  { id: 5, title: "Desert Dunes", thumbnail: "/images/cinematic/shot-5.webp", aspectRatio: "portrait" },
-  { id: 6, title: "City Reflections", thumbnail: "/images/cinematic/shot-6.webp", aspectRatio: "landscape" },
-  { id: 7, title: "Forest Canopy", thumbnail: "/images/cinematic/shot-7.webp", aspectRatio: "portrait" },
-  { id: 8, title: "Aerial Coastline", thumbnail: "/images/cinematic/shot-8.webp", aspectRatio: "landscape" },
+  { id: 1, title: "Golden Hour Silhouette", thumbnail: "/photo/cinematic1.webp", aspectRatio: "landscape" },
+  { id: 2, title: "Lost In Her Eyes", thumbnail: "/photo/cinematic2.webp", aspectRatio: "portrait" },
+  { id: 3, title: "Mountain Mist", thumbnail: "/photo/cinematic3.webp", aspectRatio: "landscape" },
+  { id: 4, title: "Ocean Waves", thumbnail: "/photo/cinematic4.webp", aspectRatio: "square" },
 ];
 
 /* ---------- Graphic Designs ---------- */
