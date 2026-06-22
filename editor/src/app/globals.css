@@ -135,6 +135,11 @@ body {
   to { transform: rotate(360deg); }
 }
 
+@keyframes loading-gradient-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
 /* ========================================
    UTILITY CLASSES
    ======================================== */
