@@ -104,10 +104,10 @@ export const graphicDesigns: GraphicDesignItem[] = [
 
 /* ---------- Photo Edits (Before/After) ---------- */
 export const photoEdits: PhotoEditItem[] = [
-  { id: 1, title: "Portrait Retouching", before: "/images/edits/before-1.webp", after: "/images/edits/after-1.webp" },
-  { id: 2, title: "Landscape Color Grading", before: "/images/edits/before-2.webp", after: "/images/edits/after-2.webp" },
-  { id: 3, title: "Product Photo Enhancement", before: "/images/edits/before-3.webp", after: "/images/edits/after-3.webp" },
-  { id: 4, title: "Real Estate HDR Edit", before: "/images/edits/before-4.webp", after: "/images/edits/after-4.webp" },
+  { id: 1, title: "Portrait Retouching", before: "/photo/before1.webp", after: "/photo/after1.webp" },
+  { id: 2, title: "Landscape Color Grading", before: "/photo/placeholder.png", after: "/photo/after2.webp" },
+  { id: 3, title: "Product Photo Enhancement", before: "/photo/before3.webp", after: "/photo/after3.webp" },
+  { id: 4, title: "Real Estate HDR Edit", before: "/photo/before4.webp", after: "/photo/after4.webp" },
 ];
 
 /* ---------- Photography ---------- */

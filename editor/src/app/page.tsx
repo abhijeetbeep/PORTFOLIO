@@ -12,7 +12,6 @@ import VideoPortfolio from "@/components/sections/VideoPortfolio";
 import CinematicShots from "@/components/sections/CinematicShots";
 import GraphicDesign from "@/components/sections/GraphicDesign";
 import PhotoEditing from "@/components/sections/PhotoEditing";
-import Photography from "@/components/sections/Photography";
 import AboutMe from "@/components/sections/AboutMe";
 import Skills from "@/components/sections/Skills";
 import Statistics from "@/components/sections/Statistics";
@@ -51,7 +50,7 @@ export default function Home() {
       const files = fs.readdirSync(photoDir);
       
       // Get reference dimensions from before1 (which is the first card)
-      const before1File = files.find(f => /^before1\.(jpg|jpeg|png)$/i.test(f));
+      const before1File = files.find(f => /^before1\.(jpg|jpeg|png|webp)$/i.test(f));
       if (before1File) {
         try {
           const dims = getImageDimensions(path.join(photoDir, before1File));
@@ -62,32 +61,44 @@ export default function Home() {
         }
       }
 
-      const beforeFiles = files.filter(f => /^before\d+\.(jpg|jpeg|png)$/i.test(f));
-      
-      // Sort numerically (e.g. before1, before2, ..., before6)
-      beforeFiles.sort((a, b) => {
-        const numA = parseInt(a.match(/^before(\d+)/i)?.[1] || "0", 10);
-        const numB = parseInt(b.match(/^before(\d+)/i)?.[1] || "0", 10);
-        return numA - numB;
-      });
+      Object.keys(titlesMap).forEach(num => {
+        const beforeFile = files.find(f => new RegExp(`^before${num}\\.(webp|png|jpg|jpeg)$`, 'i').test(f));
+        const afterFile = files.find(f => new RegExp(`^after${num}\\.(webp|png|jpg|jpeg)$`, 'i').test(f));
 
-      beforeFiles.forEach(beforeFile => {
-        const match = beforeFile.match(/^before(\d+)\.(jpg|jpeg|png)$/i);
-        if (match) {
-          const num = match[1];
-          const afterFile = files.find(f => new RegExp(`^after${num}\\.(png|jpg|jpeg)$`, 'i').test(f));
-          if (afterFile) {
-            dynamicPhotoEdits.push({
-              id: `dynamic-${num}`,
-              title: titlesMap[num] || `Photo Retouching Showcase ${num}`,
-              description: descriptionsMap[num] || `Before and after photo editing comparison showcase ${num}.`,
-              before: `/photo/${beforeFile}`,
-              after: `/photo/${afterFile}`,
-              width: refWidth,
-              height: refHeight,
-            });
+        const beforeUrl = beforeFile ? `/photo/${beforeFile}` : `/photo/placeholder.png`;
+        const afterUrl = afterFile ? `/photo/${afterFile}` : `/photo/placeholder.png`;
+
+        let width = refWidth;
+        let height = refHeight;
+
+        // Try to get dimensions of existing files
+        const fileToMeasure = beforeFile || afterFile;
+        if (fileToMeasure) {
+          try {
+            const dims = getImageDimensions(path.join(photoDir, fileToMeasure));
+            width = dims.width;
+            height = dims.height;
+          } catch (err) {
+            console.error(`Failed to read dimensions for ${fileToMeasure}:`, err);
           }
         }
+
+        dynamicPhotoEdits.push({
+          id: `dynamic-${num}`,
+          title: titlesMap[num] || `Photo Retouching Showcase ${num}`,
+          description: descriptionsMap[num] || `Before and after photo editing comparison showcase ${num}.`,
+          before: beforeUrl,
+          after: afterUrl,
+          width: width,
+          height: height,
+        });
+      });
+
+      // Sort by id numerically to maintain correct order
+      dynamicPhotoEdits.sort((a, b) => {
+        const numA = parseInt(a.id.replace("dynamic-", ""), 10);
+        const numB = parseInt(b.id.replace("dynamic-", ""), 10);
+        return numA - numB;
       });
     }
   } catch (e) {
@@ -109,7 +120,6 @@ export default function Home() {
         <VideoPortfolio />
         <CinematicShots />
         <GraphicDesign />
-        <Photography />
         <PhotoEditing dynamicEdits={dynamicPhotoEdits} />
         <AboutMe />
         <Skills />

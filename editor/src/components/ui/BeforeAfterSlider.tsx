@@ -29,7 +29,7 @@ export default function BeforeAfterSlider({
   const [position, setPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
 
-  const aspect = width && height ? width / height : 16 / 9;
+  const aspect = 16 / 9;
 
   const updatePosition = useCallback(
     (clientX: number) => {
@@ -69,26 +69,14 @@ export default function BeforeAfterSlider({
         {/* After (full background) */}
         <div className="absolute inset-0 bg-[#0f172a] overflow-hidden">
           {afterImage ? (
-            <>
-              {/* Blurred backdrop copy for aspect-ratio mismatch letterbox/pillarbox */}
-              <Image
-                src={afterImage}
-                alt=""
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover pointer-events-none blur-xl opacity-40 scale-110"
-                priority={false}
-              />
-              {/* Contained foreground image */}
-              <Image
-                src={afterImage}
-                alt={afterLabel}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain object-center pointer-events-none relative z-10"
-                loading="lazy"
-              />
-            </>
+            <Image
+              src={afterImage}
+              alt={afterLabel}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover pointer-events-none"
+              loading="lazy"
+            />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent-dark/15 to-purple-900/20 bg-background-secondary" />
           )}
@@ -100,26 +88,14 @@ export default function BeforeAfterSlider({
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
         >
           {beforeImage ? (
-            <>
-              {/* Blurred backdrop copy for aspect-ratio mismatch letterbox/pillarbox */}
-              <Image
-                src={beforeImage}
-                alt=""
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover pointer-events-none blur-xl opacity-40 scale-110"
-                priority={false}
-              />
-              {/* Contained foreground image */}
-              <Image
-                src={beforeImage}
-                alt={beforeLabel}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-contain object-center pointer-events-none relative z-10"
-                loading="lazy"
-              />
-            </>
+            <Image
+              src={beforeImage}
+              alt={beforeLabel}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover pointer-events-none"
+              loading="lazy"
+            />
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-slate-700/40 via-gray-800/30 to-zinc-900/40 bg-background-tertiary" />
           )}
