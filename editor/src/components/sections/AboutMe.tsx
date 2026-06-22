@@ -30,7 +30,11 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
 
-export default function AboutMe() {
+interface AboutMeProps {
+  galleryImages?: Array<{ src: string; width: number; height: number }>;
+}
+
+export default function AboutMe({ galleryImages = [] }: AboutMeProps) {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [coords, setCoords] = useState({ x: 0, y: 0 });
@@ -222,7 +226,7 @@ export default function AboutMe() {
       </section>
 
       {/* Premium Expandable Gallery Modal */}
-      <GalleryModal isOpen={galleryOpen} onClose={() => setGalleryOpen(false)} />
+      <GalleryModal isOpen={galleryOpen} onClose={() => setGalleryOpen(false)} images={galleryImages} />
     </>
   );
 }

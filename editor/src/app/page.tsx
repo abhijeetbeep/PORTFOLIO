@@ -105,6 +105,43 @@ export default function Home() {
     console.error("Error reading public/photo dir:", e);
   }
 
+  // Scan public/gallery dynamically with dimensions
+  const galleryDir = path.join(process.cwd(), "public", "gallery");
+  let galleryImages: { src: string; width: number; height: number }[] = [];
+  try {
+    if (fs.existsSync(galleryDir)) {
+      const files = fs.readdirSync(galleryDir);
+      const imageFiles = files.filter(f => /\.(webp|png|jpg|jpeg)$/i.test(f));
+      
+      // Sort numerically by matching digits after 'gallery'
+      imageFiles.sort((a, b) => {
+        const numA = parseInt(a.match(/gallery(\d+)/)?.[1] || "0", 10);
+        const numB = parseInt(b.match(/gallery(\d+)/)?.[1] || "0", 10);
+        return numA - numB;
+      });
+
+      galleryImages = imageFiles.map(f => {
+        const fullPath = path.join(galleryDir, f);
+        let width = 1920;
+        let height = 1080;
+        try {
+          const dims = getImageDimensions(fullPath);
+          width = dims.width;
+          height = dims.height;
+        } catch (err) {
+          console.error("Failed to read dims for", f, err);
+        }
+        return {
+          src: `/gallery/${f}`,
+          width,
+          height
+        };
+      });
+    }
+  } catch (e) {
+    console.error("Error reading public/gallery dir:", e);
+  }
+
   return (
     <>
       {/* Global chrome */}
@@ -121,7 +158,7 @@ export default function Home() {
         <CinematicShots />
         <GraphicDesign />
         <PhotoEditing dynamicEdits={dynamicPhotoEdits} />
-        <AboutMe />
+        <AboutMe galleryImages={galleryImages} />
         <Skills />
         <Statistics />
         <Testimonials />

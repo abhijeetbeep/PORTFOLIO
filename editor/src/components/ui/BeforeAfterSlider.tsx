@@ -67,14 +67,14 @@ export default function BeforeAfterSlider({
         onTouchEnd={() => setIsDragging(false)}
       >
         {/* After (full background) */}
-        <div className="absolute inset-0 bg-[#0f172a] overflow-hidden">
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-md overflow-hidden flex items-center justify-center">
           {afterImage ? (
             <Image
               src={afterImage}
               alt={afterLabel}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover pointer-events-none"
+              className="object-contain object-center pointer-events-none"
               loading="lazy"
             />
           ) : (
@@ -84,7 +84,7 @@ export default function BeforeAfterSlider({
 
         {/* Before (clipped) */}
         <div
-          className="absolute inset-0 z-10 overflow-hidden bg-[#0f172a]"
+          className="absolute inset-0 z-10 overflow-hidden bg-black/20 backdrop-blur-md flex items-center justify-center"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
         >
           {beforeImage ? (
@@ -93,7 +93,7 @@ export default function BeforeAfterSlider({
               alt={beforeLabel}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover pointer-events-none"
+              className="object-contain object-center pointer-events-none"
               loading="lazy"
             />
           ) : (
