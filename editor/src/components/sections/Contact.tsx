@@ -4,7 +4,6 @@ import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/ui/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard";
-import { sendEmail } from "@/lib/emailjs";
 import CustomSelect from "@/components/ui/CustomSelect";
 import { personalData } from "@/data/personal";
 import * as FaIcons from "react-icons/fa";
@@ -65,11 +64,36 @@ export default function Contact() {
 
     setStatus("sending");
     try {
-      await sendEmail(form);
-      setStatus("success");
-      setLastSent(Date.now());
-      setForm({ name: "", email: "", phone: "", projectType: "", budget: "", message: "" });
-      setTimeout(() => setStatus("idle"), 5000);
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "",
+          Name: form.name,
+          Email: form.email,
+          "Phone Number": form.phone || "Not provided",
+          "Project Type": form.projectType || "Not specified",
+          "Budget Range": form.budget || "Not specified",
+          "Project Description": form.message,
+          subject: `New Lead: ${form.name} (${form.projectType || "Contact"})`,
+          from_name: form.name,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setLastSent(Date.now());
+        setForm({ name: "", email: "", phone: "", projectType: "", budget: "", message: "" });
+        setTimeout(() => setStatus("idle"), 5000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 5000);
+      }
     } catch {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 5000);
@@ -156,6 +180,12 @@ export default function Contact() {
           >
             <GlassCard className="p-6 md:p-8" hover={false}>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Hidden Web3Forms Access Key */}
+                <input
+                  type="hidden"
+                  name="access_key"
+                  value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || ""}
+                />
                 {/* Honeypot — hidden */}
                 <input
                   type="text"
@@ -250,7 +280,7 @@ export default function Contact() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-green-400 text-sm text-center font-medium"
                   >
-                    ✓ Your message has been sent successfully. I will contact you soon.
+                    Message sent successfully!
                   </motion.p>
                 )}
                 {status === "error" && (

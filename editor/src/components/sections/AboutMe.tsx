@@ -38,22 +38,59 @@ export default function AboutMe() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Photo placeholder */}
+          {/* Visual Container */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="relative w-full flex items-center justify-center"
           >
-            <div className="aspect-[3/4] rounded-2xl bg-gradient-to-br from-accent/20 via-accent-dark/10 to-purple-900/20 bg-background-secondary border border-white/10 overflow-hidden">
-              {/* Decorative elements */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-32 h-32 rounded-full bg-accent/10 animate-pulse-glow" />
-              </div>
+            {/* Background Card */}
+            <div
+              className="hidden lg:block w-full aspect-[3/4] rounded-2xl border border-white/10 overflow-hidden relative shadow-2xl"
+              style={{
+                backgroundImage: "url('/aboutbg.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              {/* Slight dark overlay for readability */}
+              <div className="absolute inset-0 bg-black/45 backdrop-blur-[1px]" />
             </div>
+
+            {/* Profile Image (centered on desktop, moves above text on mobile) */}
+            <div className="lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-10">
+              <motion.div
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                whileHover={{ scale: 1.05 }}
+                className="relative group cursor-pointer transition-all duration-500"
+              >
+                {/* Blue glow effect around the profile image */}
+                <div className="absolute -inset-4 rounded-full bg-blue-500/25 blur-2xl group-hover:bg-blue-500/45 transition duration-500" />
+                
+                {/* Circular Profile Image with Glassmorphism Border */}
+                <div
+                  className="relative w-[280px] h-[280px] rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm shadow-[0_0_40px_rgba(59,130,246,0.6)]"
+                >
+                  <img
+                    src="/about.jpg"
+                    alt="Abhijeet Profile"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                </div>
+              </motion.div>
+            </div>
+
             {/* Decorative frame */}
-            <div className="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border border-accent/20 -z-10" />
+            <div className="hidden lg:block absolute -bottom-4 -right-4 w-full h-full rounded-2xl border border-accent/20 -z-10" />
           </motion.div>
 
           {/* Text content */}
