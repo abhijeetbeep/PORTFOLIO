@@ -25,13 +25,13 @@ export default function Pricing() {
         />
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
+          className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-5 mb-10 md:mb-12"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
           variants={{
             hidden: { opacity: 0 },
-            show: { opacity: 1, transition: { staggerChildren: 0.15 } },
+            show: { opacity: 1, transition: { staggerChildren: 0.1 } },
           }}
         >
           {personalData.pricing.map((feature, i) => {
@@ -44,24 +44,39 @@ export default function Pricing() {
                   show: { opacity: 1, y: 0 },
                 }}
               >
-                <GlassCard className="p-8 h-full flex flex-col items-center text-center group relative overflow-hidden" hover={true}>
+                <GlassCard
+                  className="relative overflow-hidden rounded-[20px] border border-white/10 bg-white/5 p-4 sm:p-5 md:p-5 lg:p-5 h-45 sm:h-47.5 md:h-50 flex flex-col items-center justify-center text-center group will-change-transform"
+                  hover={false}
+                >
                   {/* Accent glow on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <motion.div
+                    className="absolute inset-0 bg-linear-to-b from-blue-500/10 via-transparent to-transparent opacity-0"
+                    animate={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.35 }}
+                  />
+
+                  <motion.div
+                    className="absolute inset-0 rounded-[20px] border border-blue-400/0"
+                    initial={false}
+                    whileHover={{ borderColor: "rgba(96, 165, 250, 0.35)" }}
+                    transition={{ duration: 0.35 }}
+                  />
                   
                   {/* Icon wrapper */}
-                  <div className="w-16 h-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 group-hover:scale-110 group-hover:text-blue-300 transition-all duration-300 mb-6">
-                    <IconComponent size={24} />
-                  </div>
+                  <motion.div
+                    className="relative z-10 mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-blue-500/20 bg-blue-500/10 text-blue-400 shadow-[0_0_18px_rgba(59,130,246,0.12)]"
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <IconComponent size={22} />
+                  </motion.div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-white mb-3 font-[family-name:var(--font-heading)]">
+                  <h3 className="relative z-10 text-lg sm:text-xl font-bold text-white font-heading">
                     {feature.title}
                   </h3>
-
-                  {/* Description */}
-                  <p className="text-text-secondary text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
                 </GlassCard>
               </motion.div>
             );
@@ -78,7 +93,7 @@ export default function Pricing() {
         >
           <button
             onClick={scrollToContact}
-            className="px-10 py-4 rounded-xl font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95 transition-all duration-300 border border-blue-400/20 mb-4 cursor-pointer"
+            className="px-10 py-4 rounded-xl font-bold text-white bg-linear-to-r from-blue-600 via-indigo-600 to-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95 transition-all duration-300 border border-blue-400/20 mb-4 cursor-pointer"
           >
             Contact For More Details
           </button>

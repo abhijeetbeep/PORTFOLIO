@@ -128,7 +128,7 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[2000] flex items-center justify-center p-4 md:p-6"
+          className="fixed inset-0 z-2000 flex items-center justify-center p-4 md:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -144,7 +144,7 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
 
           {/* ── Main Modal Container ── */}
           <motion.div
-            className="relative w-[95vw] max-w-[1600px] h-[92vh] md:h-[88vh] rounded-3xl border border-white/10 bg-[#05060b]/95 backdrop-blur-2xl shadow-[0_0_60px_rgba(59,130,246,0.25),_0_0_120px_rgba(59,130,246,0.08)] overflow-hidden z-10 flex flex-col"
+            className="relative w-[95vw] max-w-400 h-[92vh] md:h-[88vh] rounded-3xl border border-white/10 bg-[#05060b]/95 backdrop-blur-2xl shadow-[0_0_60px_rgba(59,130,246,0.25),0_0_120px_rgba(59,130,246,0.08)] overflow-hidden z-10 flex flex-col"
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -153,7 +153,7 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
             {/* ── Ambient glow orbs ── */}
             <div className="absolute -top-32 -left-32 w-80 h-80 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/[0.03] rounded-full blur-[200px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-blue-500/3 rounded-full blur-[200px] pointer-events-none" />
 
             {/* ── Floating particles ── */}
             {PARTICLES.map((p) => (
@@ -182,8 +182,8 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
             ))}
 
             {/* ── Header ── */}
-            <div className="px-6 py-5 md:px-8 md:py-6 flex items-center justify-between border-b border-white/[0.06] relative z-20 bg-[#05060b]/60 backdrop-blur-sm">
-              <h2 className="text-xl md:text-2xl font-extrabold tracking-wider uppercase bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+            <div className="px-6 py-5 md:px-8 md:py-6 flex items-center justify-between border-b border-white/6 relative z-20 bg-[#05060b]/60 backdrop-blur-sm">
+              <h2 className="text-xl md:text-2xl font-extrabold tracking-wider uppercase bg-linear-to-r from-blue-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(59,130,246,0.4)]">
                 Creative Gallery
               </h2>
               <button
@@ -199,7 +199,7 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
             <div
               ref={containerRef}
               onMouseMove={handleMouseMove}
-              className="flex-grow relative z-10 overflow-hidden"
+              className="grow relative z-10 overflow-hidden"
             >
               {images.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-white/40">
@@ -214,7 +214,7 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
                     return (
                       <motion.div
                         key={img.src}
-                        className="flex-shrink-0 snap-center w-[75vw] max-w-[320px] relative"
+                        className="shrink-0 snap-center w-[75vw] max-w-[320px] relative"
                         animate={{ y: [0, -8, 0, 8, 0] }}
                         transition={{
                           duration: floatDuration,
@@ -224,7 +224,7 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
                         }}
                       >
                         <div
-                          className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md p-2.5 shadow-[0_0_20px_rgba(59,130,246,0.1)] hover:shadow-[0_0_30px_rgba(59,130,246,0.25)] hover:border-blue-500/40 transition-all duration-300 cursor-pointer overflow-hidden group"
+                          className="rounded-2xl border border-white/10 bg-white/3 backdrop-blur-md p-2.5 shadow-[0_0_20px_rgba(59,130,246,0.1)] hover:shadow-[0_0_30px_rgba(59,130,246,0.25)] hover:border-blue-500/40 transition-all duration-300 cursor-pointer overflow-hidden group"
                           onClick={() => setActiveImageIndex(i)}
                         >
                           <div className="relative w-full rounded-xl overflow-hidden bg-black/30 flex items-center justify-center">
@@ -299,9 +299,9 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
                           }}
                           onClick={() => setActiveImageIndex(i)}
                         >
-                          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-md p-2.5 shadow-[0_4px_30px_rgba(0,0,0,0.3),_0_0_15px_rgba(59,130,246,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.4),_0_0_30px_rgba(59,130,246,0.2)] hover:border-blue-500/30 transition-all duration-300 overflow-hidden group relative">
+                          <div className="rounded-2xl border border-white/8 bg-white/2 backdrop-blur-md p-2.5 shadow-[0_4px_30px_rgba(0,0,0,0.3),0_0_15px_rgba(59,130,246,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.4),0_0_30px_rgba(59,130,246,0.2)] hover:border-blue-500/30 transition-all duration-300 overflow-hidden group relative">
                             {/* Shine sweep */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.04] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-10 pointer-events-none" />
+                            <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/4 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-10 pointer-events-none" />
 
                             <div className="relative w-full rounded-xl overflow-hidden bg-black/25 flex items-center justify-center">
                               <Image
@@ -329,7 +329,7 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
                   </div>
 
                   {/* ── Bottom reflective gradient ── */}
-                  <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#05060b] via-[#05060b]/60 to-transparent pointer-events-none z-30" />
+                  <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-[#05060b] via-[#05060b]/60 to-transparent pointer-events-none z-30" />
                 </div>
               )}
             </div>
@@ -339,7 +339,7 @@ export default function GalleryModal({ isOpen, onClose, images = [] }: GalleryMo
           <AnimatePresence>
             {activeImageIndex !== null && (
               <motion.div
-                className="fixed inset-0 z-[2500] flex items-center justify-center bg-black/95 backdrop-blur-2xl"
+                className="fixed inset-0 z-2500 flex items-center justify-center bg-black/95 backdrop-blur-2xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

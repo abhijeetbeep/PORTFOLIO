@@ -33,6 +33,7 @@ const LOGO_LETTERS = "ABHIZT".split("");
 const SUBTITLE_TEXT = "Creative Editor • Designer • Developer";
 
 export default function LoadingScreen() {
+  const [isEnabled, setIsEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [typedChars, setTypedChars] = useState(0);
@@ -40,8 +41,26 @@ export default function LoadingScreen() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [sparks, setSparks] = useState<Spark[]>([]);
 
+  // Show the intro only once per session.
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("siteLoaded")) {
+        return;
+      }
+
+      sessionStorage.setItem("siteLoaded", "true");
+      setIsEnabled(true);
+      setIsLoading(true);
+    } catch {
+      setIsEnabled(true);
+      setIsLoading(true);
+    }
+  }, []);
+
   // ── Generate particles & sparks client-side only ──
   useEffect(() => {
+    if (!isEnabled) return;
+
     setParticles(
       Array.from({ length: 40 }, (_, i) => ({
         id: i,
@@ -72,10 +91,12 @@ export default function LoadingScreen() {
         };
       })
     );
-  }, []);
+  }, [isEnabled]);
 
   // ── Smooth progress counter ──
   useEffect(() => {
+    if (!isEnabled) return;
+
     let frame: number;
     let start: number | null = null;
     const totalDuration = 2800; // ms to reach 100%
@@ -101,10 +122,12 @@ export default function LoadingScreen() {
 
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [isEnabled]);
 
   // ── Typing effect for subtitle ──
   useEffect(() => {
+    if (!isEnabled) return;
+
     const startDelay = setTimeout(() => {
       const interval = setInterval(() => {
         setTypedChars((prev) => {
@@ -119,10 +142,12 @@ export default function LoadingScreen() {
     }, 1200); // start typing after logo animates in
 
     return () => clearTimeout(startDelay);
-  }, []);
+  }, [isEnabled]);
 
   // ── Trigger final flash and exit ──
   useEffect(() => {
+    if (!isEnabled) return;
+
     if (progress >= 100) {
       const flashTimer = setTimeout(() => setShowFinalFlash(true), 200);
       const exitTimer = setTimeout(() => setIsLoading(false), 900);
@@ -131,7 +156,11 @@ export default function LoadingScreen() {
         clearTimeout(exitTimer);
       };
     }
-  }, [progress]);
+  }, [progress, isEnabled]);
+
+  if (!isEnabled) {
+    return null;
+  }
 
   // Render particles from client-generated state (no Math.random in JSX)
   const particleElements = particles.map((p) => (
@@ -196,7 +225,7 @@ export default function LoadingScreen() {
     <AnimatePresence>
       {isLoading && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-100 flex flex-col items-center justify-center overflow-hidden"
           style={{ background: "#050508" }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
@@ -227,7 +256,7 @@ export default function LoadingScreen() {
 
           {/* ── Floating ambient glow orbs ── */}
           <motion.div
-            className="absolute w-[500px] h-[500px] rounded-full pointer-events-none"
+            className="absolute w-125 h-125 rounded-full pointer-events-none"
             style={{
               background: "radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)",
               filter: "blur(60px)",
@@ -239,7 +268,7 @@ export default function LoadingScreen() {
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute w-[400px] h-[400px] rounded-full pointer-events-none"
+            className="absolute w-100 h-100 rounded-full pointer-events-none"
             style={{
               background: "radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)",
               filter: "blur(50px)",
@@ -251,7 +280,7 @@ export default function LoadingScreen() {
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute w-[300px] h-[300px] rounded-full pointer-events-none"
+            className="absolute w-75 h-75 rounded-full pointer-events-none"
             style={{
               background: "radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)",
               filter: "blur(40px)",
@@ -278,7 +307,7 @@ export default function LoadingScreen() {
               {LOGO_LETTERS.map((letter, i) => (
                 <motion.span
                   key={i}
-                  className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold font-[family-name:var(--font-heading)] select-none"
+                  className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold font-heading select-none"
                   style={{
                     background:
                       "linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6, #8b5cf6)",
@@ -408,7 +437,7 @@ export default function LoadingScreen() {
           >
             {/* Glassmorphism bar container */}
             <div
-              className="w-56 sm:w-64 h-[5px] rounded-full overflow-hidden relative"
+              className="w-56 sm:w-64 h-1.25 rounded-full overflow-hidden relative"
               style={{
                 background: "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(255,255,255,0.06)",

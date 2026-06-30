@@ -36,7 +36,7 @@ export default function Lightbox({ isOpen, onClose, title, gradient, imgSrc, wid
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-[80] flex items-center justify-center"
+          className="fixed inset-0 z-80 flex items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -78,7 +78,7 @@ export default function Lightbox({ isOpen, onClose, title, gradient, imgSrc, wid
               </div>
             ) : (
               <div
-                className={`aspect-video rounded-2xl bg-gradient-to-br ${
+                className={`aspect-video rounded-2xl bg-linear-to-br ${
                   gradient || "from-accent/20 to-accent-dark/20"
                 } bg-background-secondary border border-white/10`}
               />

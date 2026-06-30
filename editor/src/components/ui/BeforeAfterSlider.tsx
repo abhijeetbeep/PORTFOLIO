@@ -56,7 +56,7 @@ export default function BeforeAfterSlider({
     <div className="flex flex-col h-full justify-between space-y-3">
       <div
         ref={containerRef}
-        className="relative rounded-xl overflow-hidden select-none border border-white/10 w-full flex-shrink-0"
+        className="relative rounded-xl overflow-hidden select-none border border-white/10 w-full shrink-0"
         style={{ aspectRatio: aspect }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
@@ -78,7 +78,7 @@ export default function BeforeAfterSlider({
               loading="lazy"
             />
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-accent-dark/15 to-purple-900/20 bg-background-secondary" />
+            <div className="absolute inset-0 bg-linear-to-br from-accent/20 via-accent-dark/15 to-purple-900/20 bg-background-secondary" />
           )}
         </div>
 
@@ -97,7 +97,7 @@ export default function BeforeAfterSlider({
               loading="lazy"
             />
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-700/40 via-gray-800/30 to-zinc-900/40 bg-background-tertiary" />
+            <div className="absolute inset-0 bg-linear-to-br from-slate-700/40 via-gray-800/30 to-zinc-900/40 bg-background-tertiary" />
           )}
         </div>
 
@@ -124,11 +124,11 @@ export default function BeforeAfterSlider({
         </div>
       </div>
 
-      <div className="flex-grow flex flex-col justify-between">
+      <div className="grow flex flex-col justify-between">
         <div>
           <p className="text-white font-medium text-sm line-clamp-1">{title}</p>
           {description && (
-            <p className="text-text-secondary text-xs leading-relaxed mt-1 line-clamp-2 min-h-[40px]">{description}</p>
+            <p className="text-text-secondary text-xs leading-relaxed mt-1 line-clamp-2 min-h-10">{description}</p>
           )}
         </div>
       </div>

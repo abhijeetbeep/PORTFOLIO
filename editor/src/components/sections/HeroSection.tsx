@@ -414,7 +414,7 @@ export default function HeroSection() {
                       whileTap={{ scale: 0.98 }}
                     >
                       <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 pointer-events-none" />
-                      <span className="relative z-10">Hire Me</span>
+                      <span className="relative z-10">Enquiry</span>
                     </motion.button>
                   </>
                 )}

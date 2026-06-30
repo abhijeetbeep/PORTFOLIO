@@ -1,68 +1,56 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import SectionHeading from "@/components/ui/SectionHeading";
-import Lightbox from "@/components/ui/Lightbox";
 import { cinematicShots } from "@/data/portfolio";
-import { HiZoomIn } from "react-icons/hi";
+import Link from "next/link";
 import Image from "next/image";
 
-const heightMap = { landscape: "h-48", portrait: "h-72", square: "h-56" };
+const previewItems = cinematicShots.slice(0, 3);
 
 export default function CinematicShots() {
-  const [lightbox, setLightbox] = useState<{ open: boolean; title: string; imgSrc: string }>({
-    open: false, title: "", imgSrc: "",
-  });
-
   return (
-    <section className="section-padding bg-background-secondary/50">
-      <div className="max-w-7xl mx-auto">
-        <SectionHeading
-          title="Cinematic Shots"
-          subtitle="Capturing moments with cinematic precision"
-        />
+    <section id="cinematic-shots" className="py-10 md:py-12 bg-background-secondary/50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-white mb-5 md:mb-6">
+          Cinematic Shots
+        </h2>
 
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-          {cinematicShots.map((shot, i) => (
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+          {previewItems.map((shot, i) => (
             <motion.div
               key={shot.id}
-              className={`group relative overflow-hidden rounded-2xl border border-white/10 break-inside-avoid cursor-pointer transition-all duration-500 ease-in-out hover:scale-105 hover:-translate-y-2 hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] hover:border-blue-500/30 ${
-                heightMap[shot.aspectRatio]
-              }`}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.08 }}
-              onClick={() => setLightbox({ open: true, title: shot.title, imgSrc: shot.thumbnail })}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: i * 0.06, duration: 0.4 }}
+              whileHover={{ scale: 1.03 }}
+              className="group relative aspect-square overflow-hidden rounded-[14px] border border-white/10 bg-transparent shadow-[0_14px_34px_rgba(0,0,0,0.28)] transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(59,130,246,0.22)]"
             >
               <Image
                 src={shot.thumbnail}
                 alt={shot.title}
                 fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                sizes="(max-width: 768px) 33vw, 20vw"
+                className="object-cover transition-all duration-300"
+                style={{
+                  filter: "none",
+                  backdropFilter: "none",
+                  opacity: 1,
+                  transform: "none",
+                }}
                 loading="lazy"
               />
-
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-300 flex items-center justify-center">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
-                  <HiZoomIn className="text-white text-2xl mx-auto mb-2" />
-                  <p className="text-white font-medium text-sm">{shot.title}</p>
-                </div>
-              </div>
             </motion.div>
           ))}
         </div>
-      </div>
 
-      <Lightbox
-        isOpen={lightbox.open}
-        onClose={() => setLightbox({ open: false, title: "", imgSrc: "" })}
-        title={lightbox.title}
-        imgSrc={lightbox.imgSrc}
-      />
+        <Link
+          href="/cinematic-shots"
+          className="mt-5 inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-blue-400/20 bg-linear-to-r from-blue-600 to-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_28px_rgba(59,130,246,0.4)]"
+        >
+          View All Cinematic Shots →
+        </Link>
+      </div>
     </section>
   );
 }
