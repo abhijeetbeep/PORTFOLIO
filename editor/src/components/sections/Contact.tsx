@@ -6,6 +6,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard";
 import CustomSelect from "@/components/ui/CustomSelect";
 import { personalData } from "@/data/personal";
+import { sendEmail } from "@/lib/emailjs";
 import * as FaIcons from "react-icons/fa";
 
 const getIcon = (iconName: string) => {
@@ -65,36 +66,11 @@ export default function Contact() {
 
     setStatus("sending");
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "",
-          Name: form.name,
-          Email: form.email,
-          "Phone Number": form.phone || "Not provided",
-          "Project Type": form.projectType || "Not specified",
-          "Budget Range": form.budget || "Not specified",
-          "Project Description": form.message,
-          subject: `New Lead: ${form.name} (${form.projectType || "Contact"})`,
-          from_name: form.name,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setStatus("success");
-        setLastSent(Date.now());
-        setForm({ name: "", email: "", phone: "", projectType: "", budget: "", message: "" });
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
-        setStatus("error");
-        setTimeout(() => setStatus("idle"), 5000);
-      }
+      await sendEmail(form);
+      setStatus("success");
+      setLastSent(Date.now());
+      setForm({ name: "", email: "", phone: "", projectType: "", budget: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
     } catch {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 5000);
@@ -103,12 +79,6 @@ export default function Contact() {
 
   const enquiryForm = (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Hidden Web3Forms Access Key */}
-      <input
-        type="hidden"
-        name="access_key"
-        value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || ""}
-      />
       {/* Honeypot — hidden */}
       <input
         type="text"

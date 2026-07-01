@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import CustomCursor from "@/components/layout/CustomCursor";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import FloatingSocialDock from "@/components/layout/FloatingSocialDock";
 import Footer from "@/components/layout/Footer";
 import BackButton from "@/components/ui/BackButton";
+import GraphicDesignGallery from "@/components/portfolio/GraphicDesignGallery";
 import { personalData } from "@/data/personal";
-import { cinematicShots } from "@/data/portfolio";
+import { getCinematicGalleryItems } from "@/lib/portfolio-gallery";
 
 export const metadata: Metadata = {
   title: `Cinematic Shots | ${personalData.logoText}`,
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function CinematicShotsPage() {
+  const items = getCinematicGalleryItems();
+
   return (
     <>
       <CustomCursor />
@@ -29,27 +31,11 @@ export default function CinematicShotsPage() {
               <BackButton />
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-heading text-white tracking-tight mb-5 md:mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold font-[family-name:var(--font-heading)] text-white tracking-tight mb-5 md:mb-6">
               Cinematic Shots
             </h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-              {cinematicShots.map((shot) => (
-                <div
-                  key={shot.id}
-                  className="relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_14px_34px_rgba(0,0,0,0.28)]"
-                >
-                  <Image
-                    src={shot.thumbnail}
-                    alt={shot.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
+            <GraphicDesignGallery items={items} />
           </div>
         </section>
       </main>

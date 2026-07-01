@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { graphicDesigns } from "@/data/portfolio";
+import { cinematicShots, graphicDesigns } from "@/data/portfolio";
 import { getImageDimensions } from "@/utils/imageMetadata";
 
 export type PhotoGalleryItem =
@@ -125,4 +125,25 @@ export function getGraphicGalleryItems(): GraphicGalleryItem[] {
     height: design.height,
     description: design.description,
   }));
+}
+
+export function getCinematicGalleryItems(workspacePath = process.cwd()): GraphicGalleryItem[] {
+  const photoDir = path.join(workspacePath, "public", "photo");
+
+  return cinematicShots.map((shot) => {
+    const filePath = path.join(photoDir, path.basename(shot.thumbnail));
+    const dimensions = fs.existsSync(filePath)
+      ? getImageDimensions(filePath)
+      : { width: 1920, height: 1080 };
+
+    return {
+      id: shot.id,
+      title: shot.title,
+      category: "Cinematic",
+      src: shot.thumbnail,
+      width: dimensions.width,
+      height: dimensions.height,
+      description: shot.title,
+    };
+  });
 }

@@ -25,7 +25,7 @@ export default function Pricing() {
         />
 
         <motion.div
-          className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-5 mb-10 md:mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 md:mb-12 items-stretch"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
@@ -39,13 +39,14 @@ export default function Pricing() {
             return (
               <motion.div
                 key={i}
+                className="h-full"
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   show: { opacity: 1, y: 0 },
                 }}
               >
                 <GlassCard
-                  className="relative overflow-hidden rounded-[20px] border border-white/10 bg-white/5 p-4 sm:p-5 md:p-5 lg:p-5 h-45 sm:h-47.5 md:h-50 flex flex-col items-center justify-center text-center group will-change-transform"
+                  className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-white/5 p-4 sm:p-5 md:p-5 lg:p-5 flex flex-col items-center justify-center text-center group will-change-transform"
                   hover={false}
                 >
                   {/* Accent glow on hover */}
