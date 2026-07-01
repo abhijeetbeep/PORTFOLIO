@@ -27,7 +27,15 @@ export type PhotoGalleryItem =
 export type GraphicGalleryItem = {
   id: number;
   title: string;
-  category: string;
+  category:
+    | "posters"
+    | "branding"
+    | "invitation"
+    | "thumbnail"
+    | "social-media"
+    | "marketing"
+    | "event"
+    | "print";
   src: string;
   width: number;
   height: number;

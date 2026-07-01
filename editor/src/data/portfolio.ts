@@ -25,7 +25,15 @@ export interface CinematicShot {
 export interface GraphicDesignItem {
   id: number;
   title: string;
-  category: string;
+  category:
+    | "posters"
+    | "branding"
+    | "invitation"
+    | "thumbnail"
+    | "social-media"
+    | "marketing"
+    | "event"
+    | "print";
   thumbnail: string;
   description: string;
   width: number;
