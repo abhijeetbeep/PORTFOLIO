@@ -119,7 +119,7 @@ export function getGraphicGalleryItems(): GraphicGalleryItem[] {
   return graphicDesigns.map((design) => ({
     id: design.id,
     title: design.title,
-    category: design.category.replace("-", " "),
+    category: design.category,
     src: design.thumbnail,
     width: design.width,
     height: design.height,

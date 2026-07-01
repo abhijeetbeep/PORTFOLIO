@@ -25,7 +25,7 @@ export interface CinematicShot {
 export interface GraphicDesignItem {
   id: number;
   title: string;
-  category: "posters" | "thumbnails" | "social-media" | "branding";
+  category: string;
   thumbnail: string;
   description: string;
   width: number;
@@ -84,22 +84,22 @@ export const videoPortfolio: VideoItem[] = [
 /* ---------- Cinematic Shots ---------- */
 export const cinematicShots: CinematicShot[] = [
   { id: 1, title: "Golden Hour Silhouette", thumbnail: "/photo/cinematic1.webp", aspectRatio: "landscape" },
-  { id: 2, title: "Lost In Her Eyes", thumbnail: "/photo/cinematic2.webp", aspectRatio: "portrait" },
-  { id: 3, title: "Mountain Mist", thumbnail: "/photo/cinematic3.webp", aspectRatio: "landscape" },
+  { id: 2, title: "Cinematic Nature", thumbnail: "/photo/cinematic2.webp", aspectRatio: "portrait" },
+  { id: 3, title: "Omkareshwar", thumbnail: "/photo/cinematic3.webp", aspectRatio: "landscape" },
   { id: 4, title: "Ocean Waves", thumbnail: "/photo/cinematic4.webp", aspectRatio: "square" },
 ];
 
 /* ---------- Graphic Designs ---------- */
 export const graphicDesigns: GraphicDesignItem[] = [
   { id: 1, title: "Promotion Poster", category: "posters", thumbnail: "/graphic/DEMO1.webp", description: "Event Poster Design using bold layouts and typography.", width: 546, height: 771 },
-  { id: 2, title: "Brand Promotion Campaign", category: "posters", thumbnail: "/graphic/DEMO2.webp", description: "Promotional Poster featuring vibrant color themes.", width: 1363, height: 767 },
-  { id: 3, title: "Creative Marketing Poster", category: "posters", thumbnail: "/graphic/DEMO3.webp", description: "Creative Poster Design with custom graphical assets.", width: 961, height: 542 },
-  { id: 4, title: "Elegant Invitation Card Design", category: "posters", thumbnail: "/graphic/DEMO5.webp", description: "Marketing Poster optimized for communication and branding.", width: 1120, height: 641 },
-  { id: 5, title: "YouTube Thumbnail Design", category: "thumbnails", thumbnail: "/graphic/DEMO4.webp", description: "YouTube Thumbnail Design focusing on high click-through rate (CTR).", width: 1672, height: 941 },
+  { id: 2, title: "Brand Promotion Campaign", category: "marketing", thumbnail: "/graphic/DEMO2.webp", description: "Promotional Poster featuring vibrant color themes.", width: 1363, height: 767 },
+  { id: 3, title: "Creative Marketing Poster", category: "marketing", thumbnail: "/graphic/DEMO3.webp", description: "Creative Poster Design with custom graphical assets.", width: 961, height: 542 },
+  { id: 4, title: "Elegant Invitation Card Design", category: "invitation", thumbnail: "/graphic/DEMO5.webp", description: "Marketing Poster optimized for communication and branding.", width: 1120, height: 641 },
+  { id: 5, title: "YouTube Thumbnail Design", category: "thumbnail", thumbnail: "/graphic/DEMO4.webp", description: "YouTube Thumbnail Design focusing on high click-through rate (CTR).", width: 1672, height: 941 },
   { id: 6, title: "Social Media Campaign Design", category: "social-media", thumbnail: "/graphic/DEMO6.webp", description: "Cohesive social media marketing campaign designed for multi-platform engagement.", width: 2938, height: 2463 },
   { id: 7, title: "Brand Identity Design", category: "branding", thumbnail: "/graphic/DEMO7.webp", description: "Professional branding and visual identity design crafted to create a strong and memorable brand presence.", width: 4950, height: 1238 },
-  { id: 8, title: "Grand Inauguration Ceremony Poster", category: "posters", thumbnail: "/graphic/DEMO8.webp", description: "Professionally designed promotional poster featuring modern layout, strong visual hierarchy, and engaging branding elements.", width: 1422, height: 705 },
-  { id: 9, title: "Cricket Championship Tournament Poster", category: "posters", thumbnail: "/graphic/DEMO9.webp", description: "Modern promotional poster design created with strong visual hierarchy, engaging typography, and impactful branding elements.", width: 1920, height: 1080 },
+  { id: 8, title: "Grand Inauguration Ceremony Poster", category: "event", thumbnail: "/graphic/DEMO8.webp", description: "Professionally designed promotional poster featuring modern layout, strong visual hierarchy, and engaging branding elements.", width: 1422, height: 705 },
+  { id: 9, title: "Cricket Championship Tournament Poster", category: "event", thumbnail: "/graphic/DEMO9.webp", description: "Modern promotional poster design created with strong visual hierarchy, engaging typography, and impactful branding elements.", width: 1920, height: 1080 },
 ];
 
 /* ---------- Photo Edits (Before/After) ---------- */
