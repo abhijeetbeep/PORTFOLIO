@@ -35,7 +35,8 @@ export type GraphicGalleryItem = {
     | "social-media"
     | "marketing"
     | "event"
-    | "print";
+    | "print"
+    | "Cinematic";
   src: string;
   width: number;
   height: number;
